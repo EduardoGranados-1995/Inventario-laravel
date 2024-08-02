@@ -1,6 +1,6 @@
 
 <center>
-        <table border="1" style="text-align:center">
+        <table border="1" style="text-align:center" class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -79,7 +79,7 @@
                     @endif
                 @endforeach   
                 @else
-                    <div class="alert-danger">No hay articulos, agregue alguno</div>
+                    <div class="alert-danger">No hay articulos, agregue alguno</div><br>
                 @endif
 
         </table>

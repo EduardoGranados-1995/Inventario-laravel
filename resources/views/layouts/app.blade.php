@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Mi inventario online</title>
+    <title>Almacen | INBAL</title>
 
     <!-- Scripts 
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -47,8 +47,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"  >
-                    Mi inventario Online
+                <a class="navbar-brand" href="{{ url('/home') }}"  >
+                    <img  src="{{asset(url('img/logo-inbal.png'))}}" alt="" width="400px">
                 </a>
                 
                   
@@ -60,10 +60,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <a class="nav-link" href="{{url('/')}}">Inicio</a>
-                        <a class="nav-link" href="{{url('/producto')}}">Producto</a>
+                        <a class="nav-link" href="{{url('/home')}}">Centros de Trabajo</a>
+                        <a class="nav-link" href="{{url('/producto')}}">Productos</a>
+                        <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
+                        <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
                         <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a>
-                        <a class="nav-link" href="{{url('/blog')}}">Blog informativo</a>
+                        <!-- <a class="nav-link" href="{{url('/blog')}}">Blog informativo</a> -->
 
                     </ul>
 
@@ -72,7 +74,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesion') }}</a>
+                                <!-- <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesion') }}</a> -->
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">

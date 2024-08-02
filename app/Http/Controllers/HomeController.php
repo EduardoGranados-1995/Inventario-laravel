@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Articulo;
 use App\Proveedor;
 use App\Inventario;
+use App\CentrosTrabajo;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -26,7 +28,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+
+        $Centros = DB::table('centros_trabajo')->select('*')->get();
+        return view('home',compact('Centros'));
     }
 
     public function seleccionArticulos()
