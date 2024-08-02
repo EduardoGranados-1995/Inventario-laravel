@@ -28,6 +28,7 @@ Route::get('/home', array(
     'middleware'=>'auth',
     'uses'=>'HomeController@index'
 ));
+Route::post('/home-centro', 'CentroController@guardar')->name('centro');
 
 Route::get('/soporte',array(
     'as'=>'soporte',
@@ -67,9 +68,11 @@ Route::get('/perfil', 'HomeController@perfil')->name('perfil');
 Route::get('/index', function(){
     return view('index');
 });
-Route::get('/producto',function(){
-    return view('producto');
-});
+Route::get('/producto', 'ProductoController@index');
+Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name('categoria');
+Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
+
+
 Route::get('/nosotros', function(){
     return view('nosotros');
 });

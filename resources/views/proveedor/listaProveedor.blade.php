@@ -1,6 +1,6 @@
 
     <center>
-            <table border="1" style="text-align:center">
+            <table border="1" style="text-align:center" class="table table-striped">
                 <thead>
                     <tr>
                         <th>nom_empresa</th>
@@ -61,7 +61,7 @@
                         @endif
                     @endforeach   
                 @else
-                    <div class="alert-danger">No hay proveedores, agregue alguno</div>
+                    <div class="alert-danger">No hay proveedores, agregue alguno</div><br>
                 @endif
 
             </table>
