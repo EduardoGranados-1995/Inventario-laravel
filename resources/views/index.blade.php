@@ -3,31 +3,74 @@
 
 @section('content')
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{asset('img/procesos.jpg')}}"  class="d-block w-100" style="width: 100px; height: 400px;" >
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header" align="center"><strong>Instituto Nacional de Bellas Artes y Literatura</strong></div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Recordarme') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Iniciar sesion') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-outline-secondary" href="{{ route('password.request') }}">
+                                        {{ __('¿Olvido su contraseña?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="carousel-item">
-      <img src="{{asset('img/logistica.jpg')}}" class="d-block w-100" style="width: 100px; height: 400px;" >
-    </div>
-    <div class="carousel-item">
-      <img src="{{asset('img/inventario.jpg')}}"   class="d-block w-100" style="width: 100px; height: 400px;" >
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
 <br>
 <!--
@@ -38,7 +81,7 @@
   <video src="" style="max-width:100%; max-height:100%"></video>
 </div>
 -->
-<div id="content" style=" padding: 100px 100px 200px 100px; ">
+<!-- <div id="content" style=" padding: 100px 100px 200px 100px; ">
     <div style="float:left;" class="col-md-5">
       <div class="form-group">
         <h2>Misión</h2>
@@ -59,7 +102,7 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 
 
