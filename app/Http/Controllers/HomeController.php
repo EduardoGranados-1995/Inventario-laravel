@@ -10,6 +10,7 @@ use App\CentrosTrabajo;
 use App\Producto;
 use App\Categoria;
 use DB;
+
 class HomeController extends Controller
 {
     /**
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $conteoC = Categoria::count();
 
         return view('home',compact('conteo', 'conteoP', 'conteoPv', 'conteoC'));
+
     }
 
     public function seleccionArticulos()

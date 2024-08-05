@@ -11,13 +11,17 @@
       <div class="modal-body">
         <form id="centroT" method="POST" action="{{ route('categoria') }}">
             @csrf
+
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-outdent" aria-hidden="true"></i></span>
               </div>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre de la categoría" class="form-control">
             </div>
-            
+
+            <label for="nombre">Nombre Categoría:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control">
+
             <div class="modal-footer">
               <button type="submit" class="btn btn-success">Guardar</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal">cancelar</button>
@@ -26,5 +30,8 @@
       </div>
     </div>
   </div>
+
+</div>
+
 </div>
 

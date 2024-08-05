@@ -5,11 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Almacen | INBAL</title>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+
+    <title>Almacen | INBAL</title>
+
+    <!-- Scripts 
+    <script src="{{ asset('js/app.js') }}" defer></script>
+-->
+
+
+
+    <!-- CSS only -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -46,11 +59,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
                         <a class="nav-link" href="{{url('/dashboard')}}">Centros de Trabajo</a>
                         <a class="nav-link" href="{{url('/producto')}}">Productos</a>
                         <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
                         <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
                         <!-- <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a> -->
+
+                        <a class="nav-link" href="{{url('/home')}}">Centros de Trabajo</a>
+                        <a class="nav-link" href="{{url('/producto')}}">Productos</a>
+                        <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
+                        <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
+                        <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a>
+                        <!-- <a class="nav-link" href="{{url('/blog')}}">Blog informativo</a> -->
+
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
