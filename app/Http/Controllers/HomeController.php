@@ -7,7 +7,10 @@ use App\Articulo;
 use App\Proveedor;
 use App\Inventario;
 use App\CentrosTrabajo;
+use App\Producto;
+use App\Categoria;
 use DB;
+
 class HomeController extends Controller
 {
     /**
@@ -26,11 +29,22 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+    public function inicio(){
+        
+        $Centros = DB::table('centros_trabajo')->select('*')->orderBy('clave_ct', 'ASC')->get();
+
+        return view('dashboard',compact('Centros'));
+    } 
+    
     public function index()
     {
+        $conteo = CentrosTrabajo::count();
+        $conteoP = Producto::count();
+        $conteoPv = Proveedor::count();
+        $conteoC = Categoria::count();
 
-        $Centros = DB::table('centros_trabajo')->select('*')->get();
-        return view('home',compact('Centros'));
+        return view('home',compact('conteo', 'conteoP', 'conteoPv', 'conteoC'));
+
     }
 
     public function seleccionArticulos()
@@ -44,7 +58,7 @@ class HomeController extends Controller
     public function seleccionProveedores()
     {
         $proveedores=Proveedor::orderBy('id','desc')->paginate(5);
-        return view('inicioProveedores', array(
+        return view('Proveedores.inicioProveedores', array(
             'proveedores'=>$proveedores
         ));
     }

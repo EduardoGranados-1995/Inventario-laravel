@@ -11,6 +11,33 @@
       <div class="modal-body">
         <form id="centroT" method="POST" action="{{ route('producto') }}">
         @csrf
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-outdent" aria-hidden="true"></i></span>
+              </div>
+              <select name="producto" id="producto" class="form-control" required>
+                <option value="">Selecciona una categoría</option>
+                @foreach($categoria as $cat)
+                  <option value="{{$cat->id}}">{{$cat->nombre}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-archive" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del Producto" required>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-align-center" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" id="detalles" name="detalles" class="form-control" placeholder="Detalles del Producto" required>
+            </div>
+
           <label for="producto">Categoría:</label>
           <select name="producto" id="producto" class="form-control">
             <option value="">Selecciona una categoría</option>
@@ -22,6 +49,7 @@
           <input type="text" id="nombre" name="nombre" class="form-control">
           <label for="detalles">Detalles:</label>
           <input type="text" id="detalles" name="detalles" class="form-control">
+
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-success">Guardar</button>
