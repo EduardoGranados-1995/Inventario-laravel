@@ -1,12 +1,13 @@
-
+<h1 align="center">Proveedores</h1>
     <center>
             <table border="1" style="text-align:center" class="table table-striped">
                 <thead>
                     <tr>
-                        <th>nom_empresa</th>
-                        <th>descripcion</th>
-                        <th>rubro</th>
-                        <th>Opciones</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
 
@@ -18,20 +19,21 @@
                             <tr>
                                 <th>{{$proveedor->nom_empresa}}</th>
                                 <th>{{$proveedor->descripcion}}</th>
+                                <th>&nbsp;</th>
                                 <th>{{$proveedor->rubro}}</th>
                                 
                                 <th>
                                     
-                                        <a href="{{ route('detallesProveedor',['proveedor_id' => $proveedor->id ] )}}" class="btn btn-success" style="margin:5px">Ver</a>
+                                    <a href="{{ route('detallesProveedor',['proveedor_id' => $proveedor->id ] )}}" class="btn btn-info btn-sm" style="margin:5px"><i class="fa fa-eye" aria-hidden="true"> Ver</i>
+                                    </a>
                                         <br>
-                                        <a href="{{ route('editarProveedor',['proveedor_id' => $proveedor->id ] )}}" class="btn btn-warning" style="margin:5px">Editar</a>
+                                    <a href="{{ route('editarProveedor',['proveedor_id' => $proveedor->id ] )}}" class="btn btn-success btn-sm" style="margin:5px"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar</a>
                                         <br>
-                                    
                                     <form action="{{url('/eliminarProveedor/'.$proveedor->id)}}" method="post" style="margin:5px">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
                                     <!-- Botón en HTML (lanza el modal en Bootstrap)--> 
-                                        <a href="#modal{{$proveedor->id}}" role="button" class="btn btn-danger"data-toggle="modal">Eliminar</a>
+                                        <a href="#modal{{$proveedor->id}}" role="button" class="btn btn-danger btn-sm"data-toggle="modal"><i class="fa fa-window-close-o" aria-hidden="true"></i> Eliminar</a>
                                         <!-- Modal / Ventana / Overlay en HTML  -->
 
                                         <div id="modal{{$proveedor->id}}" class="modal fade" >
@@ -45,11 +47,11 @@
                                                     <div class="modal-body">
                                                         <p>¿Seguro que quieres borrar este proveedor?</p>
                                                     <h3>{{$proveedor->nom_empresa}}</h3>
-                                                    <h3>{{$proveedor->rubro}}</h3>
+                                                    <h6>{{$proveedor->rubro}}</h6>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn button-primary"  data-dismiss="modal">Cancelar</button>
                                                         <button type="submit" class="btn btn-danger">Borrar</button>  
+                                                        <button type="button" class="btn btn-warning"  data-dismiss="modal">Cancelar</button>
                                                     </div>
                                                 </div>
                                             </div>

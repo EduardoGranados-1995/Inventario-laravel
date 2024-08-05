@@ -44,8 +44,12 @@
                     @foreach($categoria as $cat)
                         <tr>
                             <td>{{$cat->nombre}}</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>
+                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            </td>
+                            <td>
+                                <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -63,6 +67,8 @@
                     <th>Categoría</th>
                     <th>Nombre del Producto</th>
                     <th>Detalles</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </thead>
                 <tbody align="center">
                     @foreach($producto as $pro)
@@ -70,6 +76,12 @@
                             <td>{{$pro->nombre_cat}}</td>
                             <td>{{$pro->nombre_producto}}</td>
                             <td>{{$pro->detalles}}</td>
+                            <td>
+                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            </td>
+                            <td>
+                                <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

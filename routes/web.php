@@ -22,7 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 //RUTAS INTERNAS DE ADMINISTRACION
-
+Route::get('/dashboard', array(
+    'as'=>'dashboard',
+    'middleware'=>'auth',
+    'uses'=>'HomeController@inicio'
+));
 Route::get('/home', array(
     'as'=>'home',
     'middleware'=>'auth',

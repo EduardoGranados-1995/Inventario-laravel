@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <a class="nav-link" href="{{url('/home')}}">Centros de Trabajo</a>
+                        <a class="nav-link" href="{{url('/dashboard')}}">Centros de Trabajo</a>
                         <a class="nav-link" href="{{url('/producto')}}">Productos</a>
                         <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
                         <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
@@ -79,9 +79,9 @@
                                         <a class="dropdown-item" href="{{ route('home') }}">
                                             {{ __('Panel de inicio') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('perfil') }}">
+                                        <!-- <a class="dropdown-item" href="{{ route('perfil') }}">
                                             {{ __('Mi perfil') }}
-                                        </a>
+                                        </a> -->
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
