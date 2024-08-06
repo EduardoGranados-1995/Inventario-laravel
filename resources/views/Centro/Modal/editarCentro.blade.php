@@ -1,50 +1,52 @@
 <!-- Modal -->
-<div class="modal fade" id="Centros" tabindex="-1" role="dialog" aria-labelledby="CentrosLabel" aria-hidden="true">
+<div class="modal fade" id="editCentro{{ $cen->id }}" tabindex="-1" role="dialog" aria-labelledby="editCentroLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="CentrosLabel">Nuevo Centro de Trabajo</h5>
+        <h5 class="modal-title" id="editCentroLabel">Actualizar Centro de Trabajo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form id="centroT" method="POST" action="{{ route('centro') }}" class="d-inline formulario-agregar">
-          @csrf
+      <form id="editForm" method="POST" action="{{ route('updateCentro', $cen->id) }}">
+      @method('PUT')
+      @csrf
+        <div class="modal-body">
+
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-list-ul" aria-hidden="true"></i></span>
             </div>
-              <input type="text" id="clave" name="clave" class="form-control" placeholder="Clave del Centro de Trabajo" required>
+              <input type="text" id="clave" name="clave" class="form-control" value="{{ $cen->clave_ct }}" required>
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-building" aria-hidden="true"></i></span>
             </div>
-              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del Centro de Trabajo" required>
+              <input type="text" id="nombre" name="nombre" class="form-control" value="{{ $cen->nombre_ct }}" required>
           </div>
           
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
             </div>
-            <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Teléfono" required>
+            <input type="text" id="telefono" name="telefono" class="form-control" value="{{ $cen->telefono }}" required>
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
             </div>
-            <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Dirección" required>
+            <input type="text" id="direccion" name="direccion" class="form-control" value="{{ $cen->direccion }}" required>
           </div>
   
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="submit" class="btn btn-success">Actualizar</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">cancelar</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

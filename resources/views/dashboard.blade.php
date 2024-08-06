@@ -1,7 +1,11 @@
 
 @extends('layouts.app')
 
+
+
+
 @include('Centro.centros')
+
 
 @section('content')
 <div class="card">
@@ -15,6 +19,24 @@
       <h5 class="card-title" align="right"><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Centros">
         <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Centro de Trabajo
       </button></h5>
+
+      <div class="container">
+        @if(session('message'))
+            <div class="alert alert-success">
+                {{session('message')}}
+            </div>
+        @elseif(session('Elimessage'))
+            <div class="alert alert-danger">
+                {{session('Elimessage')}}
+            </div>
+        @elseif(session('Upmessage'))
+            <div class="alert alert-info">
+                {{session('Upmessage')}}
+            </div>
+        @endif
+        
+    </div>
+
     <table class="table table-striped col-md-10" >
                 <thead  class="thead-primary" align="center">
                     <th>Clave Centro</th>
@@ -33,12 +55,17 @@
                             <td>{{$cen->telefono}}</td>
                             <td>{{$cen->direccion}}</td>
                             <td>
-                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCentro{{ $cen->id }}" >
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
                             </td>
                             <td>
-                                <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="{{route('deleteCentro', $cen->id)}}"class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
+
+                        <!-- MODAL EDITAR -->
+                        @include('Centro.Modal.editarCentro')
                         @endforeach
                     @else
                         <td colspan="6">

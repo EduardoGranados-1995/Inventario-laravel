@@ -29,14 +29,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function inicio(){
-        $Centros = DB::table('centros_trabajo')->select('*')->orderBy('clave_ct', 'ASC')->get();
-        return view('dashboard',compact('Centros'));
-
         
-        
-    } 
-    
     public function index()
     {
         $conteo = CentrosTrabajo::count();

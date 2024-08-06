@@ -2,8 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="card">
+  <div class="card-header bg-info text-white" align="center" >
+    <h2>Panel de Control</h2>
+  </div>
+  <div class="card-body">
 
-<div class="grey-bg container-fluid" ¿>
+  <div class="grey-bg container-fluid" ¿>
   <section id="minimal-statistics">
     &nbsp;
     <div class="row">
@@ -234,4 +239,10 @@
     </div>
   </section>
   </div>
+
+  </div>
+</div>
+
+
+
 @endsection
