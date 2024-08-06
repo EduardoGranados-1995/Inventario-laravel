@@ -64,7 +64,7 @@
 
                         <a class="nav-link" href="{{url('/home')}}">Panel</a>
                         <a class="nav-link" href="{{url('/dashboard')}}">Centros de Trabajo</a>
-                        <a class="nav-link" href="{{url('/producto')}}">Productos</a>
+                        <a class="nav-link" href="{{url('/producto')}}">Categorías y Productos</a>
                         <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
                         <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
                         <!-- <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a> -->
