@@ -60,18 +60,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        <a class="nav-link" href="{{url('/home')}}">Dashboard</a>
                         <a class="nav-link" href="{{url('/dashboard')}}">Centros de Trabajo</a>
                         <a class="nav-link" href="{{url('/producto')}}">Productos</a>
                         <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
                         <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
                         <!-- <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a> -->
 
-                        <a class="nav-link" href="{{url('/home')}}">Centros de Trabajo</a>
-                        <a class="nav-link" href="{{url('/producto')}}">Productos</a>
-                        <a class="nav-link" href="{{route('inicioProveedores')}}">Proveedores</a>
-                        <a class="nav-link" href="{{url('/inicioArticulos')}}">Inventario</a>  
-                        <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a>
-                        <!-- <a class="nav-link" href="{{url('/blog')}}">Blog informativo</a> -->
 
 
                     </ul>

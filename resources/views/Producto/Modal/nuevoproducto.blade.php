@@ -37,19 +37,6 @@
               </div>
               <input type="text" id="detalles" name="detalles" class="form-control" placeholder="Detalles del Producto" required>
             </div>
-
-          <label for="producto">Categoría:</label>
-          <select name="producto" id="producto" class="form-control">
-            <option value="">Selecciona una categoría</option>
-            @foreach($categoria as $cat)
-              <option value="{{$cat->id}}">{{$cat->nombre}}</option>
-            @endforeach
-          </select>
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" class="form-control">
-          <label for="detalles">Detalles:</label>
-          <input type="text" id="detalles" name="detalles" class="form-control">
-
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-success">Guardar</button>

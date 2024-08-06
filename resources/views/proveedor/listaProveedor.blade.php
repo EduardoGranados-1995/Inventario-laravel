@@ -1,4 +1,4 @@
-<h1 align="center">Proveedores</h1>
+<h1 align="center" class="bg-info">Proveedores</h1>
     <center>
             <table border="1" style="text-align:center" class="table table-striped">
                 <thead>

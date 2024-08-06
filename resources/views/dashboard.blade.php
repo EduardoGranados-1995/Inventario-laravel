@@ -1,18 +1,6 @@
 
 @extends('layouts.app')
 
-@section('styles')
-<style>
-
-</style>
-@endsection
-
-@section('script')
-<script>
-
-</script>
-@endsection
-
 @include('Centro.centros')
 
 @section('content')

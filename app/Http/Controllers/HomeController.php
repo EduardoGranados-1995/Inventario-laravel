@@ -30,10 +30,11 @@ class HomeController extends Controller
      */
 
     public function inicio(){
-        
         $Centros = DB::table('centros_trabajo')->select('*')->orderBy('clave_ct', 'ASC')->get();
-
         return view('dashboard',compact('Centros'));
+
+        
+        
     } 
     
     public function index()
@@ -43,8 +44,7 @@ class HomeController extends Controller
         $conteoPv = Proveedor::count();
         $conteoC = Categoria::count();
 
-        return view('home',compact('conteo', 'conteoP', 'conteoPv', 'conteoC'));
-
+        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC'));
     }
 
     public function seleccionArticulos()
