@@ -36,14 +36,18 @@ class HomeController extends Controller
         $conteoP = Producto::count();
         $conteoPv = Proveedor::count();
         $conteoC = Categoria::count();
+        $conteoA = Articulo::sum('cantidad');
 
-        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC'));
+        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC', 'conteoA'));
     }
 
     public function seleccionArticulos()
-    {
-        $articulos=Articulo::orderBy('id','desc')->paginate(5);
-        return view('inicioArticulos', array(
+    {   $articulos = DB::table('articulos as a')
+        ->join('users as u', 'a.user_id', '=', 'u.id')
+        ->select('a.*', 'u.name')
+        ->orderBy('id','desc')->get();
+        
+        return view('inventario.inicioArticulos', array(
             'articulos'=>$articulos
         ));
     }

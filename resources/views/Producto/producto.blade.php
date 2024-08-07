@@ -11,14 +11,14 @@
 @section('content')
 
 <div class="card">
-  <div class="card-header bg-success text-white" align="center">
+  <div class="card-header bg-info text-white" align="center">
     <h3><strong>Categorías y Productos</strong></h3>
   </div>
 
   
     <div class="card-body" align="center">
         <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist" class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <ul class="nav nav-tabs" role="tablist" class="navbar navbar-info" style="background-color: #e3f2fd;">
                 <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#categorias">Categorias</a>
                 </li>

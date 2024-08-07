@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card bg-success text-white">
+        <div class="card bg-primary text-white">
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card bg-primary text-white">
+        <div class="card bg-success text-white">
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
@@ -84,16 +84,16 @@
   <br>
     <div class="row">
       <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
+        <div class="card bg-danger text-white">
           <div class="card-content">
             <div class="card-body">
               <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="danger">278</h3>
-                  <span>New Projects</span>
-                </div>
                 <div class="align-self-center">
-                  <i class="icon-rocket danger font-large-2 float-right"></i>
+                  <i class="fa fa-archive fa-5x warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                    <span>Existencia Total</span>
+                    <h3>{{ $conteoA }}</h3>
                 </div>
               </div>
             </div>

@@ -22,43 +22,32 @@ class ArticuloController extends Controller
     public function guardarArticulo(Request $request){
         //validar formulario
         $validatedData=$this->validate($request,[
-            'nombre'=>'required',
             'categoria'=>'required',
+            'producto'=>'required',
+            'proveedor'=>'required',
+            'fecha'=>'required',
+            'Pcompra'=>'numeric|required',
+            'Pventa'=>'numeric|required',
+            'cantidad'=>'numeric|required',
             'descripcion'=>'required',
-            'cantidad'=>'Integer|required',
-            'tipo'=>'required',
-            'stock_max'=>'numeric|required',
-            'stock_min'=>'numeric|required',
-            'p_venta'=>'numeric|required',
-            'costo'=>'numeric|required',
-            'imagen'=>'required'
         ]);
 
         $articulo= new Articulo();
         $user=\Auth::user();
         $articulo->user_id=$user->id;
         //$articulo->inventario_id=$inventario->id;
-        $articulo->inventario_id=$request->input('inventario_id');
-        $articulo->nombre=$request->input('nombre');
         $articulo->categoria=$request->input('categoria');
-        $articulo->descripcion=$request->input('descripcion');
+        $articulo->producto=$request->input('producto');
+        $articulo->proveedor=$request->input('proveedor');
+        $articulo->fecha_ingreso=$request->input('fecha');
+        $articulo->Pcompra=$request->input('Pcompra');
+        $articulo->Pventa=$request->input('Pventa');
         $articulo->cantidad=$request->input('cantidad');
-        $articulo->tipo=$request->input('tipo');
-        $articulo->stock_max=$request->input('stock_max');
-        $articulo->stock_min=$request->input('stock_min');
-        $articulo->p_venta=$request->input('p_venta');
-        $articulo->costo=$request->input('costo');
-        $imagen=$request->file('imagen');
-
-        if ($imagen) {
-            $imagen_path=$imagen->getClientOriginalName();
-            \Storage::disk('imagenes')->put($imagen_path,\File::get($imagen));
-            $articulo->imagen=$imagen_path;
-        }
-
+        $articulo->descripcion=$request->input('descripcion');
 
         $articulo->save();
-        return redirect()->route('inicioArticulos',['inventario_id'=>$articulo->inventario_id])->with(array(
+
+        return redirect()->back()->with(array(
             "message"=>'Articulo agregado correctamente'
         ));
 

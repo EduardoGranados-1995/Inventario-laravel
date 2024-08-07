@@ -71,7 +71,10 @@ Route::get('/perfil', 'HomeController@perfil')->name('perfil');
 Route::get('/index', function(){
     return view('index');
 });
-Route::get('/producto', 'ProductoController@index');
+
+
+Route::get('/producto',array('as'=>'producto','middleware'=>'auth','uses'=>'ProductoController@index') );
+
 Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name('categoria');
 Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
 
