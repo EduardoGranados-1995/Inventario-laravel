@@ -90,17 +90,11 @@ Route::get('/blog', function(){
 
 //RUTAS PARA LOS ARTICULOS
 
-Route::get('agregarArticulo/',array(
-    'as'=>'agregarArticulo',
-    'middleware'=>'auth',
-    'uses'=>'ArticuloController@agregarArticulo'
-));
+Route::get('agregarArticulo/',array('as'=>'agregarArticulo','middleware'=>'auth','uses'=>'ArticuloController@agregarArticulo'));
+Route::post('/guardarArticulo',array('as'=>'guardarArticulo','middleware'=>'auth','uses'=>'ArticuloController@guardarArticulo'));
 
-Route::post('/guardarArticulo',array(
-    'as'=>'guardarArticulo',
-    'middleware'=>'auth',
-    'uses'=>'ArticuloController@guardarArticulo'
-));
+
+
 
 Route::get('/imagen/{filename}', array(
     'as'=>'imagenArticulo',

@@ -17,8 +17,8 @@
             </div>
             <div class="col-4" align="center">
                 <form action="{{url('/buscarArticulo')}}" role="buscar" method="get" class="col-md-10"> 
-                    <label for="buscar"><h5>Buscar por Nombre</h5></label>
-                    <input type="text" class="form-control" name="buscar"> 
+                    <label for="buscar"><h5>Buscar por Producto</h5></label>
+                    <input type="text" class="form-control" name="buscar"> <br>
                     <input type="submit" value="buscar" class="btn btn-info">
                 </form>
             </div>

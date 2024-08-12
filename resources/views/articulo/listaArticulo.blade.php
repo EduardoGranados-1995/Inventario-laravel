@@ -22,25 +22,28 @@
                         <tbody>
                             <tr>
                                 
-                                <th>{{$articulo->categoria}}</th>
-                                <th>{{$articulo->producto}}</th>
-                                <th>{{$articulo->proveedor}}</th>
-                                <th>{{$articulo->fecha_ingreso}}</th>
+                                <th>{{$articulo->n_categoria}}</th>
+                                <th>{{$articulo->nombre_producto}}</th>
+                                <th>{{$articulo->nom_empresa}}</th>
+                                <th>{{ Carbon\Carbon::parse($articulo->fecha_ingreso)->format('d-m-Y') }}</th>
                                 <th>{{$articulo->cantidad}}</th>
                                 <th>$ {{$articulo->Pcompra}}</th>
                                 <th>$ {{$articulo->Pventa}}</th>
                                 <th>{{$articulo->name}}</th>
                                 <th>
-                                    <a href="{{ route('detallesArticulo',['articulo_id' => $articulo->id ] )}}" class="btn btn-success" style="margin:5px"><i class="fa fa-eye" aria-hidden="true">Ver</i></a>
-                                    <br>
-                                    <a href="{{ route('editarArticulo',['articulo_id' => $articulo->id ] )}}" class="btn btn-warning" style="margin:5px"><i class="fa fa-pencil-square" aria-hidden="true">Editar</i></a>
+                                    <!-- <a href="{{ route('detallesArticulo',['articulo_id' => $articulo->id ] )}}" class="btn btn-success btn-sm" style="margin:5px"><i class="fa fa-eye" aria-hidden="true">&nbsp;Ver</i></a>
+                                    <br> -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#actArticulo{{$articulo->id}}">
+                                        <i class="fa fa-pencil-square" aria-hidden="true">&nbsp;Editar</i>
+                                    </button>
+                                    <!-- <a href="{{ route('editarArticulo',['articulo_id' => $articulo->id ] )}}" class="btn btn-primary btn-sm" style="margin:5px"><i class="fa fa-pencil-square" aria-hidden="true">&nbsp;Editar</i></a> -->
                                     <br>
 
                                     <form action="{{url('/eliminarArticulo/'.$articulo->id)}}" method="post" style="margin:5px">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
                                     <!-- Botón en HTML (lanza el modal en Bootstrap)--> 
-                                        <a href="#modal{{$articulo->id}}" role="button" class="btn btn-danger"data-toggle="modal"><i class="fa fa-window-close-o" aria-hidden="true">Eliminar</i></a>
+                                        <a href="#modal{{$articulo->id}}" role="button" class="btn btn-danger btn-sm"data-toggle="modal"><i class="fa fa-window-close-o" aria-hidden="true">&nbsp;Eliminar</i></a>
                                         <!-- Modal / Ventana / Overlay en HTML  -->
 
                                         <div id="modal{{$articulo->id}}" class="modal fade" >
@@ -53,8 +56,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <h3>¿Seguro que quieres borrar este articulo?</h3>
-                                                    <h5>Producto: {{$articulo->producto}}</h5>
-                                                    <h5>Categoria: {{$articulo->categoria}}</h5>
+                                                    <h5>Producto: {{$articulo->nombre_producto}}</h5>
+                                                    <h5>Categoria: {{$articulo->n_categoria}}</h5>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-success">Aceptar</button>  
@@ -68,6 +71,7 @@
                             </tr>
                         </tbody>
                         @endif
+                        @include('inventario.Modal.actualizarArticulo')
                     @endforeach   
                 @else
                         <div class="alert-danger">No hay articulos, agregue alguno</div><br>

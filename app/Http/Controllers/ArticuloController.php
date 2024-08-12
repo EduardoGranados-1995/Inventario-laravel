@@ -12,6 +12,11 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ArticulosExport;
 
 use App\Articulo;
+use App\Proveedor;
+use App\Inventario;
+use App\CentrosTrabajo;
+use App\Producto;
+use App\Categoria;
 
 class ArticuloController extends Controller
 {
@@ -36,9 +41,9 @@ class ArticuloController extends Controller
         $user=\Auth::user();
         $articulo->user_id=$user->id;
         //$articulo->inventario_id=$inventario->id;
-        $articulo->categoria=$request->input('categoria');
-        $articulo->producto=$request->input('producto');
-        $articulo->proveedor=$request->input('proveedor');
+        $articulo->categoria_id=$request->input('categoria');
+        $articulo->producto_id=$request->input('producto');
+        $articulo->proveedor_id=$request->input('proveedor');
         $articulo->fecha_ingreso=$request->input('fecha');
         $articulo->Pcompra=$request->input('Pcompra');
         $articulo->Pventa=$request->input('Pventa');
@@ -82,40 +87,30 @@ class ArticuloController extends Controller
     public function actualizarArticulo($articulo_id,Request $request){
         
         $validatedData=$this->validate($request,[
-            'nombre'=>'required',
             'categoria'=>'required',
+            'producto'=>'required',
+            'proveedor'=>'required',
+            'fecha'=>'required',
+            'Pcompra'=>'numeric|required',
+            'Pventa'=>'numeric|required',
+            'cantidad'=>'numeric|required',
             'descripcion'=>'required',
-            'cantidad'=>'Integer|required',
-            'tipo'=>'required',
-            'stock_max'=>'numeric|required',
-            'stock_min'=>'numeric|required',
-            'p_venta'=>'numeric|required',
-            'costo'=>'numeric|required',
-            'imagen'=>'required'
         ]);
+        
         $user=\Auth::user();
         $articulo=Articulo::findOrFail($articulo_id);
         
         $articulo->user_id=$user->id;
-        $articulo->nombre=$request->input('nombre');
-        $articulo->categoria=$request->input('categoria');
-        $articulo->descripcion=$request->input('descripcion');
+        $articulo->categoria_id=$request->input('categoria');
+        $articulo->producto_id=$request->input('producto');
+        $articulo->proveedor_id=$request->input('proveedor');
+        $articulo->fecha_ingreso=$request->input('fecha');
+        $articulo->Pcompra=$request->input('Pcompra');
+        $articulo->Pventa=$request->input('Pventa');
         $articulo->cantidad=$request->input('cantidad');
-        $articulo->tipo=$request->input('tipo');
-        $articulo->stock_max=$request->input('stock_max');
-        $articulo->stock_min=$request->input('stock_min');
-        $articulo->p_venta=$request->input('p_venta');
-        $articulo->costo=$request->input('costo');
-        $imagen=$request->file('imagen');
-
-        if ($imagen) {
-            $imagen_path=$imagen->getClientOriginalName();
-            \Storage::disk('imagenes')->put($imagen_path,\File::get($imagen));
-            $articulo->imagen=$imagen_path;
-        }
-
-
+        $articulo->descripcion=$request->input('descripcion');
         $articulo->update();
+
         return redirect()->route('inicioArticulos')->with(array(
             "message"=>'Articulo actualizado correctamente'
         ));
@@ -148,11 +143,24 @@ class ArticuloController extends Controller
             }
         }
 
-        $articulo=Articulo::where('nombre','LIKE','%'.$buscar.'%')->orderBy($column, $order)->paginate(5);
+        $articulo = DB::table('articulos as a')
+        ->join('users as u', 'a.user_id', '=', 'u.id')
+        ->join('categorias as c', 'a.categoria_id', '=', 'c.id')
+        ->join('productos as p', 'a.producto_id', '=', 'p.id')
+        ->join('proveedores as pro', 'a.proveedor_id', '=', 'pro.id')
+        ->select('a.*', 'u.name','c.id as id_cat', 'c.nombre as n_categoria','p.id as id_prod', 'p.nombre_producto', 'pro.id as id_pro', 'pro.nom_empresa')
+        ->where('p.nombre_producto','LIKE','%'.$buscar.'%')->orderBy($column, $order)->paginate(5);;
+
+        $categorias = Categoria::all();
+        $productos = Producto::all();
+        $proveedores = Proveedor::all();
 
         return view('articulo.buscarArticulo',array(
             'articulos'=>$articulo,
-            'buscar'=>$buscar 
+            'buscar'=>$buscar,
+            'categorias' => $categorias,
+            'productos' => $productos,
+            'proveedores' => $proveedores 
         ));
     }
 

@@ -16,7 +16,7 @@
   </div>
 
   
-    <div class="card-body" align="center">
+    <div class="card-body">
         <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" class="navbar navbar-info" style="background-color: #e3f2fd;">
                 <li class="nav-item">
@@ -27,10 +27,10 @@
                 </li>
             </ul>
 
-        <div class="tab-content">
+        <div class="tab-content" align="right">
             <div id="categorias" class="container tab-pane active">
                 <br>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#NuevaCategoria" align="right">
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#NuevaCategoria" >
                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nueva Categoría
                 </button>
                 <br><br>
@@ -65,7 +65,7 @@
 
             <div id="productos" class="container tab-pane fade">
                 <br>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#NuevoProducto">
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#NuevoProducto">
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Producto
                 </button>
                 <br><br>

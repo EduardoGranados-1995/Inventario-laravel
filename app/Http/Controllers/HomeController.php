@@ -37,18 +37,30 @@ class HomeController extends Controller
         $conteoPv = Proveedor::count();
         $conteoC = Categoria::count();
         $conteoA = Articulo::sum('cantidad');
+        $conteoIn = Articulo::count();
 
-        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC', 'conteoA'));
+        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC', 'conteoA', 'conteoIn'));
     }
 
     public function seleccionArticulos()
     {   $articulos = DB::table('articulos as a')
         ->join('users as u', 'a.user_id', '=', 'u.id')
-        ->select('a.*', 'u.name')
+        ->join('categorias as c', 'a.categoria_id', '=', 'c.id')
+        ->join('productos as p', 'a.producto_id', '=', 'p.id')
+        ->join('proveedores as pro', 'a.proveedor_id', '=', 'pro.id')
+        ->select('a.*', 'u.name','c.id as id_cat', 'c.nombre as n_categoria','p.id as id_prod', 'p.nombre_producto', 'pro.id as id_pro', 'pro.nom_empresa')
         ->orderBy('id','desc')->get();
+
+        $categorias = Categoria::all();
+        $productos = Producto::all();
+        $proveedores = Proveedor::all();
+
         
         return view('inventario.inicioArticulos', array(
-            'articulos'=>$articulos
+            'articulos'=>$articulos,
+            'categorias' => $categorias,
+            'productos' => $productos,
+            'proveedores' => $proveedores
         ));
     }
 
