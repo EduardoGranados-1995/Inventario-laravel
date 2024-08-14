@@ -24,6 +24,8 @@ Auth::routes();
 //RUTAS INTERNAS DE ADMINISTRACION
 Route::get('/home', array('as'=>'home','middleware'=>'auth','uses'=>'HomeController@index'));
 
+Route::get('/facturacion', array('as'=>'facturacion', 'middleware'=>'auth', 'uses'=>'FacturacionController@index'));
+
 
 Route::get('/dashboard', array('as'=>'dashboard','middleware'=>'auth','uses'=>'CentroController@inicio'));
 Route::post('/home-centro', 'CentroController@guardar')->name('centro');
