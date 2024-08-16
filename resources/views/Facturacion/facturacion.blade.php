@@ -34,18 +34,19 @@
                                 </div>
                             </div>
 
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="tablaFacturas">
                                 <thead class="bg-info">
                                     <th class="col-3">Categoría</th>
                                     <th class="col-3">Producto</th>
                                     <th class="col-2">Precio</th>
                                     <th class="col-2">Cantidad</th>
                                     <th class="col-2">Total</th>
+                                    <th>Acción</th>
                                 </thead>
-                                <tbody>
+                                <tbody align="center">
                                     <tr>
                                         <td>
-                                            <select name="categoria" id="categoria" class="form-control">
+                                            <select name="categoria[]" id="categoria" class="form-control">
                                                 <option value="">Selecciona una Categoría</option>
                                                 @foreach($categoria as $cate)
                                                 <option value="{{ $cate->id }}">{{ $cate->nombre }}</option>
@@ -53,22 +54,23 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="producto" id="producto" class="form-control">
+                                            <select name="producto[]" id="producto" class="form-control">
                                                 <option value="">Selecciona un Producto</option>
                                                 @foreach($producto as $prod)
                                                 <option value="{{ $prod->id }}">{{ $prod->nombre_producto }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="text" id="" name="" class="form-control"></td>
-                                        <td><input type="text" id="" name="" class="form-control"></td>
-                                        <td><input type="number" id="total" name="total" step="0.01" class="form-control"></td>
+                                        <td><input type="text" id="" name="precio[]" class="form-control"></td>
+                                        <td><input type="text" id="" name="cantidad[]" class="form-control"></td>
+                                        <td><input type="number" id="total" name="total[]" step="0.01" class="form-control"></td>
+                                        <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
                             
-                            <button type="button" onclick="addProduct()" class="btn btn-primary col-3">Agregar Producto</button><br><br>
-                            <button type="submit" class="btn btn-success col-3">Crear Factura</button>
+                            <button type="button" id="agregarProducto" class="btn btn-primary ">Agregar Producto</button>
+                            <button type="submit" class="btn btn-success col-2">Crear Factura</button>
 
                         </form>
                     </div>
@@ -122,5 +124,40 @@
             this.textContent = 'Nueva Factura';
         }
     });
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#agregarProducto").click(function() {
+        var nuevaFila = `<tr>
+                            <td>
+                                <select name="categoria[]" id="categoria" class="form-control">
+                                    <option value="">Selecciona una Categoría</option>
+                                    @foreach($categoria as $cate)
+                                    <option value="{{ $cate->id }}">{{ $cate->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <select name="producto[]" id="producto" class="form-control">
+                                    <option value="">Selecciona un Producto</option>
+                                    @foreach($producto as $prod)
+                                    <option value="{{ $prod->id }}">{{ $prod->nombre_producto }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td><input type="text" id="" name="precio[]" class="form-control"></td>
+                            <td><input type="text" id="" name="cantidad[]" class="form-control"></td>
+                            <td><input type="number" id="total" name="total[]" step="0.01" class="form-control"></td>
+                            <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                        </tr>`;
+        $("#tablaFacturas tbody").append(nuevaFila);
+    });
+});
+
+// Manejar el evento de eliminación
+$(document).on("click", ".eliminarFila", function() {
+    $(this).closest("tr").remove();
+});
 </script>
 @endsection

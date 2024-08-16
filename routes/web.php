@@ -41,12 +41,12 @@ Route::get('/soporte',array(
     'uses'=>'HomeController@soporte'
 ));
 
+// Articulos
+Route::get('/inicioArticulos',array('as'=>'inicioArticulos','middleware'=>'auth','uses'=>'ArticuloController@seleccionArticulos'));
 
-Route::get('/inicioArticulos',array(
-    'as'=>'inicioArticulos',
-    'middleware'=>'auth',
-    'uses'=>'HomeController@seleccionArticulos'
-));
+
+
+
 
 Route::get('/inicioProveedores',array(
     'as'=>'inicioProveedores',

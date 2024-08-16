@@ -38,7 +38,7 @@
         @endif
         
     </div>
-    @include('articulo.listaArticulo')
+    @include('inventario.listaArticulo')
     <br>
     <hr>
 @endsection

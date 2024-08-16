@@ -20,9 +20,27 @@ use App\Categoria;
 
 class ArticuloController extends Controller
 {
-    public function agregarArticulo(Request $request){
-        return view('articulo.agregarArticulo');
-    }    
+    public function seleccionArticulos(){  
+        $articulos = DB::table('articulos as a')
+        ->join('users as u', 'a.user_id', '=', 'u.id')
+        ->join('categorias as c', 'a.categoria_id', '=', 'c.id')
+        ->join('productos as p', 'a.producto_id', '=', 'p.id')
+        ->join('proveedores as pro', 'a.proveedor_id', '=', 'pro.id')
+        ->select('a.*', 'u.name','c.id as id_cat', 'c.nombre as n_categoria','p.id as id_prod', 'p.nombre_producto', 'pro.id as id_pro', 'pro.nom_empresa')
+        ->orderBy('id','desc')->get();
+
+        $categorias = Categoria::all();
+        $productos = Producto::all();
+        $proveedores = Proveedor::all();
+
+        
+        return view('inventario.inicioArticulos', array(
+            'articulos'=>$articulos,
+            'categorias' => $categorias,
+            'productos' => $productos,
+            'proveedores' => $proveedores
+        ));
+    }  
 
     public function guardarArticulo(Request $request){
         //validar formulario
@@ -164,12 +182,6 @@ class ArticuloController extends Controller
         ));
     }
 
-/*
-    public function exportarExcel(){
-        return Excel::download(new ArticulosExport,'articulos-list.xlsx');
-    }
-
-*/
     public function exportarExcel(Request $request)
     {
         $articulo= new Articulo();
