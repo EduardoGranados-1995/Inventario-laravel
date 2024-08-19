@@ -128,7 +128,7 @@
                 </div>
                 <div class="media-body text-right">
                     <span>Facturas Totales</span>
-                    <h3>0</h3>
+                    <h3>{{ $conteoF }}</h3>
                 </div>
               </div>
             </div>
@@ -144,8 +144,8 @@
                     <i class="fa fa-money fa-5x warning font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-right">
-                      <span>Facturas Totales</span>
-                      <h3>0</h3>
+                      <span>Presupuesto Total</span>
+                      <h3>$ {{ $totalFa }}</h3>
                   </div>
                 </div>
               </div>

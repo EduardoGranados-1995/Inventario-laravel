@@ -9,6 +9,7 @@ use App\Inventario;
 use App\CentrosTrabajo;
 use App\Producto;
 use App\Categoria;
+use App\Facturacion;
 use DB;
 
 class HomeController extends Controller
@@ -38,8 +39,10 @@ class HomeController extends Controller
         $conteoC = Categoria::count();
         $conteoA = Articulo::sum('cantidad');
         $conteoIn = Articulo::count();
+        $conteoF = Facturacion::count();
+        $totalFa = Facturacion::sum('total');
 
-        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC', 'conteoA', 'conteoIn'));
+        return view('inicio',compact('conteo', 'conteoP', 'conteoPv', 'conteoC', 'conteoA', 'conteoIn','conteoF','totalFa'));
     }
 
     public function seleccionProveedores()

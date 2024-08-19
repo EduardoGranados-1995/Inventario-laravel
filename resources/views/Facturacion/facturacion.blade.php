@@ -12,8 +12,8 @@
             <div class="card-body">
                 <div class="card" align="center">
                     <div class="card-body">
-                        <form action="" method="POST">
-                        @csrf
+                        <form action="{{ route('crear.factura') }}" method="POST" enctype='multipart/form-data'>
+                            @csrf
                             <div class="row col-6">
                                 <div class="input-group mb-3 col-6">
                                     <div class="input-group-prepend">
@@ -46,7 +46,7 @@
                                 <tbody align="center">
                                     <tr>
                                         <td>
-                                            <select name="categoria[]" id="categoria" class="form-control">
+                                            <select name="categoria" id="categoria" class="form-control">
                                                 <option value="">Selecciona una Categoría</option>
                                                 @foreach($categoria as $cate)
                                                 <option value="{{ $cate->id }}">{{ $cate->nombre }}</option>
@@ -54,16 +54,16 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="producto[]" id="producto" class="form-control">
+                                            <select name="producto" id="producto" class="form-control">
                                                 <option value="">Selecciona un Producto</option>
                                                 @foreach($producto as $prod)
                                                 <option value="{{ $prod->id }}">{{ $prod->nombre_producto }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="text" id="" name="precio[]" class="form-control"></td>
-                                        <td><input type="text" id="" name="cantidad[]" class="form-control"></td>
-                                        <td><input type="number" id="total" name="total[]" step="0.01" class="form-control"></td>
+                                        <td><input type="text" id="precio" name="precio" class="form-control" oninput="calcularTotal()"></td>
+                                        <td><input type="number" id="cantidad" name="cantidad" class="form-control" oninput="calcularTotal()"></td>
+                                        <td><input type="number" id="total" name="total" step="0.01" class="form-control" readonly></td>
                                         <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                                     </tr>
                                 </tbody>
@@ -82,26 +82,30 @@
         <br><br>
         <table class="table table-bordered">
             <thead class="table-secondary" align="center">
-                <tr><th colspan="6"><h3>Listado de Facturas Emitidas</h3></th></tr>
+                <tr><th colspan="7"><h3>Listado de Facturas Emitidas</h3></th></tr>
                 <tr>
                     <th>N° Factura</th>
                     <th>Categoría</th>
                     <th>Producto</th>
+                    <th>Fecha Factura</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Total</th>
                 </tr>
             </thead>
-            <tbody>
-            @if($facturas > 1)
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
+            <tbody align="center">
+            @if($facturas->count() >= 1)
+                @foreach($facturas as $fact)
+                    <tr>
+                        <td>{{ $fact->id }}</td>
+                        <td>{{ $fact->nom_cat }}</td>
+                        <td>{{ $fact->nombre_producto }}</td>
+                        <td>{{ Carbon\Carbon::parse($fact->fecha_factura)->format('d-m-Y') }}</td>
+                        <td>{{ $fact->cantidad }}</td>
+                        <td>$ {{ $fact->precio }}</td>
+                        <td>$ {{ $fact->total }}</td>
+                    </tr>
+                @endforeach
             @else
                 <tr align="center">
                     <td colspan="6" class="alert alert-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ninguna factura</td>
@@ -113,51 +117,5 @@
 </div>
 
 
-<script>
-    document.getElementById('toggleButton').addEventListener('click', function() {
-        var card = document.getElementById('myCard');
-        if (card.style.display === 'none') {
-            card.style.display = 'block';
-            this.textContent = 'Cancelar';
-        } else {
-            card.style.display = 'none';
-            this.textContent = 'Nueva Factura';
-        }
-    });
-</script>
-
-<script>
-$(document).ready(function() {
-    $("#agregarProducto").click(function() {
-        var nuevaFila = `<tr>
-                            <td>
-                                <select name="categoria[]" id="categoria" class="form-control">
-                                    <option value="">Selecciona una Categoría</option>
-                                    @foreach($categoria as $cate)
-                                    <option value="{{ $cate->id }}">{{ $cate->nombre }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select name="producto[]" id="producto" class="form-control">
-                                    <option value="">Selecciona un Producto</option>
-                                    @foreach($producto as $prod)
-                                    <option value="{{ $prod->id }}">{{ $prod->nombre_producto }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td><input type="text" id="" name="precio[]" class="form-control"></td>
-                            <td><input type="text" id="" name="cantidad[]" class="form-control"></td>
-                            <td><input type="number" id="total" name="total[]" step="0.01" class="form-control"></td>
-                            <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
-                        </tr>`;
-        $("#tablaFacturas tbody").append(nuevaFila);
-    });
-});
-
-// Manejar el evento de eliminación
-$(document).on("click", ".eliminarFila", function() {
-    $(this).closest("tr").remove();
-});
-</script>
+<script src="{{asset(url('js/Factura/factura.js'))}}"></script>
 @endsection

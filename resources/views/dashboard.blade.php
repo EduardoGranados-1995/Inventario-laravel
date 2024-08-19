@@ -60,6 +60,10 @@
                 @endif
             </tbody>
         </table>
-    </div>
+        <!-- Enlaces de paginación -->
+        <div class="pagination" align="right">
+            {{ $Centros->links() }}
+        </div>
+    </div>    
 </div>
 @endsection

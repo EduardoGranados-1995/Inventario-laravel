@@ -31,14 +31,14 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
             </div>
-            <input type="text" id="telefono" name="telefono" class="form-control" value="{{ $cen->telefono }}" required>
+            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="55-123-456" value="{{ $cen->telefono }}" required>
           </div>
 
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
             </div>
-            <input type="text" id="direccion" name="direccion" class="form-control" value="{{ $cen->direccion }}" required>
+            <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Ingresa tu dirección" value="{{ $cen->direccion }}" required>
           </div>
   
           <div class="modal-footer">

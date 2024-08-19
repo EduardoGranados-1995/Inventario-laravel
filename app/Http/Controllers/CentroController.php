@@ -9,7 +9,7 @@ use DB;
 class CentroController extends Controller
 {
     public function inicio(){
-        $Centros = DB::table('centros_trabajo')->select('*')->orderBy('clave_ct', 'ASC')->get();
+        $Centros = DB::table('centros_trabajo')->select('*')->orderBy('clave_ct', 'ASC')->paginate(10);
         return view('dashboard',compact('Centros'));
     } 
 
