@@ -46,7 +46,9 @@
                             </button>
                         </td>
                         <td>
-                            <a href="{{route('deleteCentro', $cen->id)}}"class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <form action="{{route('deleteCentro', $cen->id)}}" class="formulario-eliminar">
+                                <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
                         </td>
                     </tr>
                     <!-- MODAL EDITAR -->
@@ -61,6 +63,26 @@
     </table>
 </div>
 
+
+<script>
+    $('.formulario-eliminar').submit(function(e){
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Estas Seguro?',
+        text: "¡No podrás modificarlo después!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '¡Si, Eliminar!'
+      }).then((result) => {
+        if (result.value) {
+            this.submit()
+          }
+    })
+  });
+</script>
 
 
 <script src="{{asset(url('js/Centros/centros.js'))}}"></script>

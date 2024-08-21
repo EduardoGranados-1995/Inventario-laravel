@@ -45,19 +45,16 @@
                             @foreach($categoria as $cat)
                                 <tr>
                                     <td>{{$cat->nombre}}</td>
-
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCategoria{{ $cat->id }}" >
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
                                     </td>
                                     <td>
                                         <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
-
-
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-
                                 </tr>
+                                @include('Producto.Modal.editCategoria')
                             @endforeach
                         </tbody>
                     </table>
@@ -85,13 +82,13 @@
                                 <td>{{$pro->detalles}}</td>
 
                                 <td>
-                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCategoria{{ $cat->id }}" >
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
-
-
                             </tr>
                         @endforeach
                     </tbody>

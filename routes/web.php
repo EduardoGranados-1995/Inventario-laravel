@@ -37,8 +37,7 @@ Route::get('/index', function(){return view('index');});
 Route::get('/producto',array('as'=>'producto','middleware'=>'auth','uses'=>'ProductoController@index') );
 Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name('categoria');
 Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
-Route::get('/nosotros', function(){return view('nosotros');});
-Route::get('/blog', function(){return view('blog');});
+Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
 
 
 //RUTAS PARA LOS ARTICULOS

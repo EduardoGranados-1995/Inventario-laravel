@@ -40,4 +40,13 @@ class ProductoController extends Controller
 
         return redirect()->back();
     }
+
+    public function editarCategoria(Request $request, $id){
+        $categoria = Categoria::findOrFail($id);
+
+        $categoria->nombre = $request->nombre;
+        $categoria->save();
+
+        return redirect()->back();
+    }
 }
