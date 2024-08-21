@@ -38,6 +38,7 @@ Route::get('/producto',array('as'=>'producto','middleware'=>'auth','uses'=>'Prod
 Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name('categoria');
 Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
 Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
+Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
 
 
 //RUTAS PARA LOS ARTICULOS

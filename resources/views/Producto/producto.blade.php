@@ -51,7 +51,9 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <form action="{{ route('eliminar.categoria', $cat->id) }}" class="formulario-eliminar">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @include('Producto.Modal.editCategoria')
@@ -100,4 +102,23 @@
 </div>
 
 
+<script>
+    $('.formulario-eliminar').submit(function(e){
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Estas Seguro?',
+        text: "¡No podrás modificarlo después!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '¡Si, Eliminar!'
+      }).then((result) => {
+        if (result.value) {
+            this.submit()
+          }
+    })
+  });
+</script>
 @endsection

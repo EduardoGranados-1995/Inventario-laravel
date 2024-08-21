@@ -49,4 +49,11 @@ class ProductoController extends Controller
 
         return redirect()->back();
     }
+
+    public function eliminarCategoria($id){
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+
+        return redirect()->back();
+    }
 }
