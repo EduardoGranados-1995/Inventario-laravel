@@ -17,24 +17,16 @@ class ProveedorController extends Controller
     }    
 
     public function guardarProveedor(Request $request){
-        //validar formulario
-        $validatedData=$this->validate($request,[
-            'nom_empresa'=>'required',
-            'descripcion'=>'required',
-            'rubro'=>'required'
-
-        ]);
+        $user=\Auth::user();
 
         $proveedor= new Proveedor();
-        $user=\Auth::user();
-        $proveedor->user_id=$user->id;
         $proveedor->nom_empresa=$request->input('nom_empresa');
-        $proveedor->descripcion=$request->input('descripcion');
-        $proveedor->rubro=$request->input('rubro');
-
-
-
+        $proveedor->correo=$request->input('correo');
+        $proveedor->telefono=$request->input('telefono');
+        $proveedor->direccion=$request->input('direccion');
+        $proveedor->user_id=$user->id;
         $proveedor->save();
+
         return redirect()->route('inicioProveedores')->with(array(
             "message"=>'Proveedor agregado correctamente'
         ));
