@@ -55,4 +55,12 @@ class FacturacionController extends Controller
 
         return redirect()->back();
     }
+
+    public function getProductos($categoryId){
+        
+        $products = Producto::where('categoria_id', $categoryId)->get();
+    return response()->json($products);
+
+    }
+
 }

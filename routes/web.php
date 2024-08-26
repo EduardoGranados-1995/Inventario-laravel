@@ -65,6 +65,7 @@ Route::get('/buscarProveedor/{buscar?}', array('as'=>'buscarProveedor','middlewa
 // RUTAS PARA LA FACTURACION
 Route::get('/facturacion', array('as'=>'facturacion', 'middleware'=>'auth', 'uses'=>'FacturacionController@index'));
 Route::post('/facturacion-create', 'FacturacionController@crearFactura')->name('crear.factura');
+Route::get('/get-products-by-category/{categoryId}', 'FacturacionController@getProductos');
 
 //EXPORTACION A EXCEL
 

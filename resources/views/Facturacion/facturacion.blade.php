@@ -46,19 +46,16 @@
                                 <tbody align="center">
                                     <tr>
                                         <td>
-                                            <select name="categoria" id="categoria" class="form-control">
-                                                <option value="">Selecciona una Categoría</option>
+                                            <select name="categoria" id="category-select" class="form-control">
+                                                <option value="">Seleccione una Categoría</option>
                                                 @foreach($categoria as $cate)
                                                 <option value="{{ $cate->id }}">{{ $cate->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="producto" id="producto" class="form-control">
-                                                <option value="">Selecciona un Producto</option>
-                                                @foreach($producto as $prod)
-                                                <option value="{{ $prod->id }}">{{ $prod->nombre_producto }}</option>
-                                                @endforeach
+                                            <select name="producto" id="product-select" class="form-control">
+                                                <option value="">Seleccione un Producto</option>
                                             </select>
                                         </td>
                                         <td><input type="text" id="precio" name="precio" class="form-control" oninput="calcularTotal()"></td>
@@ -115,6 +112,33 @@
         </table>
     </div>
 </div>
+
+
+<script>
+document.getElementById('category-select').addEventListener('change', function() {
+    var categoryId = this.value;
+    
+    // Limpiar el select de productos
+    var productSelect = document.getElementById('product-select');
+    productSelect.innerHTML = '<option value="">Seleccione un producto</option>';
+    
+    if (categoryId) {
+        // Hacer la solicitud AJAX para obtener los productos
+        fetch(`/get-products-by-category/${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function(product) {
+                    var option = document.createElement('option');
+                    option.value = product.id;
+                    option.text = product.nombre_producto;
+                    productSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
+
+</script>
 
 
 <script src="{{asset(url('js/Factura/factura.js'))}}"></script>
