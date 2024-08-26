@@ -8,7 +8,6 @@
             <th>Correo</th>
             <th>Teléfono</th>
             <th>Dirección</th>
-            <th>Ver</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -22,19 +21,17 @@
                         <th>{{$proveedor->correo}}</th>
                         <th>{{preg_replace('~.*(\d{2})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $proveedor->telefono) }}</th>
                         <th>{{$proveedor->direccion}}</th>
-                        
                         <th>
-                            <a href="{{ route('detallesProveedor',['proveedor_id' => $proveedor->id ] )}}" class="btn btn-info btn-sm" style="margin:5px"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        </th>
-                        <th>
-                            <a href="{{ route('editarProveedor',['proveedor_id' => $proveedor->id ] )}}" class="btn btn-success btn-sm" style="margin:5px"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editProveedor{{ $proveedor->id }}" >
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
                         </th>
                         <th>
                             <form action="{{url('/eliminarProveedor/'.$proveedor->id)}}" method="post" style="margin:5px">
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
-                            <!-- Botón en HTML (lanza el modal en Bootstrap)--> 
-                                <a href="#modal{{$proveedor->id}}" role="button" class="btn btn-danger btn-sm"data-toggle="modal"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+                                <!-- Botón en HTML (lanza el modal en Bootstrap)--> 
+                                <a href="#modal{{$proveedor->id}}" role="button" class="btn btn-danger"data-toggle="modal"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
                                 <!-- Modal / Ventana / Overlay en HTML  -->
 
                                 <div id="modal{{$proveedor->id}}" class="modal fade" >
@@ -61,6 +58,7 @@
                         </th>
                     </tr>
                 @endif
+                @include('proveedor.Modal.editarProveedor')
             @endforeach   
         @else
             <th class="alert-danger">No hay proveedores, agregue alguno</th><br>

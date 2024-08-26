@@ -41,7 +41,7 @@
                                     <th class="col-2">Precio</th>
                                     <th class="col-2">Cantidad</th>
                                     <th class="col-2">Total</th>
-                                    <th>Acción</th>
+                                    <!-- <th>Acción</th> -->
                                 </thead>
                                 <tbody align="center">
                                     <tr>
@@ -61,12 +61,12 @@
                                         <td><input type="number" id="precio" name="precio" class="form-control" oninput="calcularTotal()" required></td>
                                         <td><input type="number" id="cantidad" name="cantidad" class="form-control" oninput="calcularTotal()" required></td>
                                         <td><input type="number" id="total" name="total" step="0.01" class="form-control" readonly></td>
-                                        <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                                        <!-- <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td> -->
                                     </tr>
                                 </tbody>
                             </table>
                             
-                            <button type="button" id="agregarProducto" class="btn btn-primary ">Agregar Producto</button>
+                            <!-- <button type="button" id="agregarProducto" class="btn btn-primary ">Agregar Producto</button> -->
                             <button type="submit" class="btn btn-success col-2">Crear Factura</button>
 
                         </form>

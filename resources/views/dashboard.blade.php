@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="card-header bg-info text-white" align="center">
-  <h3><strong>Todos los Centros de Trabajo</strong></h3>
+  <h3><strong> Centros de Trabajo</strong></h3>
   <h5 class="card-title" align="right">
       <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Centros">
       <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Centro de Trabajo
@@ -23,6 +23,9 @@
 
     <table id="myTable" class="table table-striped" align="center">
         <thead  class="bg-secondary text-white" align="center">
+            <tr>
+                <th colspan="6"><h3>Listado de Centros de Trabajo</h3></th>
+            </tr>
             <tr>
                 <th>Clave Centro</th>
                 <th>Nombre Centro</th>

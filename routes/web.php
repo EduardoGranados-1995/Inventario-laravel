@@ -59,8 +59,8 @@ Route::post('/guardarProveedor',array('as'=>'guardarProveedor','middleware'=>'au
 Route::get('/Proveedor/{proveedor_id}',array('as'=>'detallesProveedor','middleware'=>'auth','uses'=>'ProveedorController@getProveedorDetalle'));
 Route::delete('/eliminarProveedor/{proveedor_id}', array('as'=>'eliminarProveedor','middleware'=>'auth','uses'=>'ProveedorController@eliminarProveedor'));
 Route::get('/editarProveedor/{proveedor_id}',array('as'=>'editarProveedor','middleware'=>'auth','uses'=>'ProveedorController@editarProveedor'));
-Route::post('/actualizarProveedor/{proveedor_id}', array('as'=>'actualizarProveedor','middleware'=>'auth','uses'=>'ProveedorController@actualizarProveedor'));
 Route::get('/buscarProveedor/{buscar?}', array('as'=>'buscarProveedor','middleware'=>'auth','uses'=>'ProveedorController@buscarProveedor'));
+Route::put('/actualizarProveedor/{id}', 'ProveedorController@editProveedor')->name('editar.proveedor');
 
 // RUTAS PARA LA FACTURACION
 Route::get('/facturacion', array('as'=>'facturacion', 'middleware'=>'auth', 'uses'=>'FacturacionController@index'));

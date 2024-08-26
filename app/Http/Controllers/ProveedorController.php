@@ -53,25 +53,19 @@ class ProveedorController extends Controller
         return view('proveedor.editarProveedor', array('proveedor'=>$proveedor));
     }
 
-    public function actualizarProveedor($proveedor_id,Request $request){
-        
-        $validatedData=$this->validate($request,[
-            'nom_empresa'=>'required',
-            'descripcion'=>'required',
-            'rubro'=>'required'
-        ]);
-        
+    public function editProveedor(Request $request, $id){
+                
         $user=\Auth::user();
-        $proveedor=Proveedor::findOrFail($proveedor_id);
+        $proveedor=Proveedor::findOrFail($id);
         
         $proveedor->user_id=$user->id;
-        $proveedor->nom_empresa=$request->input('nom_empresa');
-        $proveedor->descripcion=$request->input('descripcion');
-        $proveedor->rubro=$request->input('rubro');
+        $proveedor->nom_empresa=$request->nom_empresa;
+        $proveedor->correo=$request->correo;
+        $proveedor->telefono=$request->telefono;
+        $proveedor->direccion=$request->direccion;
+        $proveedor->save();
 
-
-        $proveedor->update();
-        return redirect()->route('inicioProveedores')->with(array(
+        return redirect()->back()->with(array(
             "message"=>'Proveedor actualizado correctamente'
         ));
 
