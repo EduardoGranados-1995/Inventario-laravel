@@ -28,7 +28,7 @@
 
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm ">
+    <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm ">
         <a class="navbar-brand" href="{{ url('/home') }}"  >
             <img  src="{{asset(url('img/logo-inbal.png'))}}" alt="" width="400px">
         </a>
@@ -41,12 +41,12 @@
                 <!-- Left Side Of Navbar -->
                 <strong>
                     <ul class="navbar-nav col-md-12 ">
-                        <a class="nav-link text-white" href="{{url('/home')}}">Panel</a>
-                        <a class="nav-link text-white" href="{{url('/dashboard')}}" align="center">Centros de Trabajo</a>
-                        <a class="nav-link text-white" href="{{url('/producto')}}" align="center">Categorías y Productos</a>
-                        <a class="nav-link text-white" href="{{route('inicioProveedores')}}">Proveedores</a>
-                        <a class="nav-link text-white" href="{{url('/inicioArticulos')}}">Inventario</a>  
-                        <a class="nav-link text-white" href="{{url('/facturacion')}}">Facturación</a>  
+                        <a class="nav-link text-dark" href="{{url('/home')}}">Panel</a>
+                        <a class="nav-link text-dark" href="{{url('/dashboard')}}" align="center">Centros de Trabajo</a>
+                        <a class="nav-link text-dark" href="{{url('/producto')}}" align="center">Categorías y Productos</a>
+                        <a class="nav-link text-dark" href="{{route('inicioProveedores')}}">Proveedores</a>
+                        <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}">Inventario</a>  
+                        <a class="nav-link text-dark" href="{{url('/facturacion')}}">Facturación</a>  
                     </ul>
                 </strong>
 
@@ -60,7 +60,7 @@
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                                <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('Registro') }}</a>
                             </li>
                         @endif
                     @else
@@ -69,7 +69,7 @@
 
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <strong><i class="fa fa-user-o fa-2x" aria-hidden="true"></i>&nbsp;{{ Auth::user()->name }}</strong> <span class="caret"></span>
                             </a>
 
