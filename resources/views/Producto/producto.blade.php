@@ -6,7 +6,6 @@
 
 @include('Producto.Modal.nuevacategoria')
 @include('Producto.Modal.nuevoproducto')
-@include('Producto.Modal.nuevoproveedor')
 
 @section('content')
 
@@ -36,7 +35,7 @@
                 <br><br>
                     <table class="table table-striped">
 
-                        <thead  class="thead-primary" align="center">
+                        <thead  class="bg-secondary text-white" align="center">
                             <th>Nombre</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -69,7 +68,7 @@
                 </button>
                 <br><br>
                 <table class="table table-striped">
-                    <thead  class="thead-primary" align="center">
+                    <thead  class="bg-secondary text-white" align="center">
                         <th>Categoría</th>
                         <th>Nombre del Producto</th>
                         <th>Detalles</th>
@@ -84,14 +83,17 @@
                                 <td>{{$pro->detalles}}</td>
 
                                 <td>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCategoria{{ $cat->id }}" >
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editProducto{{ $pro->id }}" >
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                 </td>
                                 <td>
-                                    <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <form action="{{ route('eliminar.producto', $pro->id) }}" class="formulario-eliminar">
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </form>
                                 </td>
                             </tr>
+                            @include('Producto.Modal.editProducto')
                         @endforeach
                     </tbody>
                 </table>

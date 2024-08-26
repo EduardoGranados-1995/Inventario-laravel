@@ -56,4 +56,24 @@ class ProductoController extends Controller
 
         return redirect()->back();
     }
+
+    public function editarProducto(Request $request, $id){
+        $producto = Producto::findOrFail($id);
+
+        $producto->categoria_id = $request->producto;
+        $producto->nombre_producto = $request->nombre;
+        $producto->detalles = $request->detalles;
+        $producto->save();
+
+        return redirect()->back();
+
+    }
+
+    public function eliminarProducto($id){
+        $producto = Producto::find($id);
+        $producto->delete();
+        
+        return redirect()->back();
+
+    }
 }

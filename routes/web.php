@@ -39,6 +39,8 @@ Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name(
 Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
 Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
 Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
+Route::put('/editar-producto/{id}', 'ProductoController@editarProducto')->name('editar.producto');
+Route::get('delete-producto/{id}', 'ProductoController@eliminarProducto')->name('eliminar.producto');
 
 
 //RUTAS PARA LOS ARTICULOS
