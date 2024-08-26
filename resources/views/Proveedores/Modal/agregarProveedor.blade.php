@@ -22,14 +22,21 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                     </div>
-                    <input type="text" id="descripcion" name="descripcion" placeholder="Correo Electrónico" class="form-control" value="{{old('descripcion')}}" required>
+                    <input type="text" id="correo" name="correo" placeholder="Correo Electrónico" class="form-control" value="{{old('correo')}}" required>
+                </div>
+                <br>
+                <div class="input-group mb-6">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" id="telefono" name="telefono" placeholder="Teléfono" class="form-control" value="{{old('telefono')}}" required>
                 </div>
                 <br>
                 <div class="input-group mb-6">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
                     </div>
-                    <input type="text" id="rubro" name="rubro" placeholder="Dirección" class="form-control" value="{{old('rubro')}}" required>
+                    <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control" value="{{old('direccion')}}" required>
                 </div>
                 <br>
                 <div class="modal-footer">

@@ -6,134 +6,129 @@
 
 @include('Producto.Modal.nuevacategoria')
 @include('Producto.Modal.nuevoproducto')
-@include('Producto.Modal.nuevoproveedor')
 
 @section('content')
 
 <div class="card">
-  <div class="card-header bg-success text-white" align="center">
+  <div class="card-header bg-info text-white" align="center">
     <h3><strong>Categorías y Productos</strong></h3>
   </div>
 
-  <br>
   
-  <div class="card-body" align="center">
-      <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist" class="navbar navbar-light" style="background-color: #e3f2fd;">
-            <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#categorias">Categorias</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#productos">Productos</a>
-            </li>
-        </ul>
+    <div class="card-body">
+        <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" class="navbar navbar-info" style="background-color: #e3f2fd;">
+                <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#categorias">Categorias</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#productos">Productos</a>
+                </li>
+            </ul>
 
-<div class="container">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist" class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#categorias">Categorias</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#productos">Productos</a>
-        </li>
-    </ul>
+        <div class="tab-content" align="right">
+            <div id="categorias" class="container tab-pane active">
+                <br>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#NuevaCategoria" >
+                <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nueva Categoría
+                </button>
+                <br><br>
+                    <table class="table table-striped">
+                        <thead  class="bg-secondary text-white" align="center">
+                            <tr>
+                                <th colspan="3"><h3>Categorías</h3></th>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            @foreach($categoria as $cat)
+                                <tr>
+                                    <td>{{$cat->nombre}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCategoria{{ $cat->id }}" >
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('eliminar.categoria', $cat->id) }}" class="formulario-eliminar">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @include('Producto.Modal.editCategoria')
+                            @endforeach
+                        </tbody>
+                    </table>
+            </div>
 
-    <div class="tab-content">
-        <div id="categorias" class="container tab-pane active">
-            <br>
-
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#NuevaCategoria" align="right">
-            <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nueva Categoría
-            </button>
-            <br><br>
-            <table class="table table-striped">
-
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#NuevaCategoria">
-                Nueva Categoría
-            </button>
-            <br><br>
-            <table class="table">
-
-                <thead  class="thead-primary" align="center">
-                    <th>Nombre</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </thead>
-                <tbody align="center">
-                    @foreach($categoria as $cat)
+            <div id="productos" class="container tab-pane fade">
+                <br>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#NuevoProducto">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Producto
+                </button>
+                <br><br>
+                <table class="table table-striped">
+                    <thead  class="bg-secondary text-white" align="center">
                         <tr>
-                            <td>{{$cat->nombre}}</td>
-
-                            <td>
-                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            </td>
-                            <td>
-                                <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                            </td>
-
-
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-
+                            <th colspan="5"><h3>Productos</h3></th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div id="productos" class="container tab-pane fade">
-            <br>
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#NuevoProducto">
-
-            <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Producto
-            </button>
-            <br><br>
-            <table class="table table-striped">
-
-                Nuevo Producto
-            </button>
-            <br><br>
-            <table class="table">
-
-                <thead  class="thead-primary" align="center">
-                    <th>Categoría</th>
-                    <th>Nombre del Producto</th>
-                    <th>Detalles</th>
-
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-
-
-                </thead>
-                <tbody align="center">
-                    @foreach($producto as $pro)
                         <tr>
-                            <td>{{$pro->nombre_cat}}</td>
-                            <td>{{$pro->nombre_producto}}</td>
-                            <td>{{$pro->detalles}}</td>
-
-                            <td>
-                                <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            </td>
-                            <td>
-                                <a href=""class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                            </td>
-
-
+                            <th>Categoría</th>
+                            <th>Nombre del Producto</th>
+                            <th>Detalles</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody align="center">
+                        @foreach($producto as $pro)
+                            <tr>
+                                <td>{{$pro->nombre_cat}}</td>
+                                <td>{{$pro->nombre_producto}}</td>
+                                <td>{{$pro->detalles}}</td>
+
+                                <td>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editProducto{{ $pro->id }}" >
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <form action="{{ route('eliminar.producto', $pro->id) }}" class="formulario-eliminar">
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @include('Producto.Modal.editProducto')
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-  </div>
 </div>
 
 
+<script>
+    $('.formulario-eliminar').submit(function(e){
+    e.preventDefault();
 
-</div>
-
-
+    Swal.fire({
+        title: '¿Estas Seguro?',
+        text: "¡No podrás modificarlo después!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '¡Si, Eliminar!'
+      }).then((result) => {
+        if (result.value) {
+            this.submit()
+          }
+    })
+  });
+</script>
 @endsection
