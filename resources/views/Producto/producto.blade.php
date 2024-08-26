@@ -34,11 +34,15 @@
                 </button>
                 <br><br>
                     <table class="table table-striped">
-
                         <thead  class="bg-secondary text-white" align="center">
-                            <th>Nombre</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            <tr>
+                                <th colspan="3"><h3>Categorías</h3></th>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
                         </thead>
                         <tbody align="center">
                             @foreach($categoria as $cat)
@@ -69,11 +73,16 @@
                 <br><br>
                 <table class="table table-striped">
                     <thead  class="bg-secondary text-white" align="center">
-                        <th>Categoría</th>
-                        <th>Nombre del Producto</th>
-                        <th>Detalles</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <tr>
+                            <th colspan="5"><h3>Productos</h3></th>
+                        </tr>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Nombre del Producto</th>
+                            <th>Detalles</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
                     </thead>
                     <tbody align="center">
                         @foreach($producto as $pro)

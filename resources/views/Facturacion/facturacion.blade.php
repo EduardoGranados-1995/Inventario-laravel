@@ -19,8 +19,8 @@
                                     <div class="input-group-prepend">
                                         <button class="btn btn-outline-primary btn-sm" type="button"><i class="fa fa-outdent" aria-hidden="true"></i></button>
                                     </div>
-                                    <select id="centro" name="centro" class="form-control" aria-label="Default select example">
-                                        <option selected>Selecciona un Centro de Trabajo</option>
+                                    <select id="centro" name="centro" class="form-control" aria-label="Default select example" required>
+                                        <option value="">Selecciona un Centro de Trabajo</option>
                                         @foreach($centros as $cent)
                                         <option value="{{ $cent->clave_ct }}">{{ $cent->clave_ct }} | {{ $cent->nombre_ct }}</option>
                                         @endforeach
@@ -30,7 +30,7 @@
                                     <div class="input-group-prepend">
                                         <button class="btn btn-outline-info btn-sm" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                     </div>
-                                    <input type="date" id="fecha" name="fecha" placeholder="Selecciona la fecha para la factura">
+                                    <input type="date" id="fecha" name="fecha" placeholder="Selecciona la fecha para la factura" required>
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                                 <tbody align="center">
                                     <tr>
                                         <td>
-                                            <select name="categoria" id="category-select" class="form-control">
+                                            <select name="categoria" id="category-select" class="form-control" required>
                                                 <option value="">Seleccione una Categoría</option>
                                                 @foreach($categoria as $cate)
                                                 <option value="{{ $cate->id }}">{{ $cate->nombre }}</option>
@@ -54,12 +54,12 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="producto" id="product-select" class="form-control">
+                                            <select name="producto" id="product-select" class="form-control" required>
                                                 <option value="">Seleccione un Producto</option>
                                             </select>
                                         </td>
-                                        <td><input type="text" id="precio" name="precio" class="form-control" oninput="calcularTotal()"></td>
-                                        <td><input type="number" id="cantidad" name="cantidad" class="form-control" oninput="calcularTotal()"></td>
+                                        <td><input type="number" id="precio" name="precio" class="form-control" oninput="calcularTotal()" required></td>
+                                        <td><input type="number" id="cantidad" name="cantidad" class="form-control" oninput="calcularTotal()" required></td>
                                         <td><input type="number" id="total" name="total" step="0.01" class="form-control" readonly></td>
                                         <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                                     </tr>
@@ -78,7 +78,7 @@
         
         <br><br>
         <table class="table table-bordered">
-            <thead class="table-secondary" align="center">
+            <thead class="bg-secondary text-white" align="center">
                 <tr><th colspan="7"><h3>Listado de Facturas Emitidas</h3></th></tr>
                 <tr>
                     <th>N° Factura</th>

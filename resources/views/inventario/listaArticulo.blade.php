@@ -1,8 +1,9 @@
-<div class="card">  
-    <div class="card-body" align="center">
         <center>
             <table border="1" style="text-align:center" class="table table-striped">
-                <thead>
+                <thead class="bg-secondary text-white">
+                    <tr>
+                        <th colspan="9"><h3>Lista de Productos</h3></th>
+                    </tr>
                     <tr>
                         <th>Categoría</th>
                         <th>Producto</th>
@@ -79,5 +80,3 @@
 
             </table>
         </center>
-    </div>
-</div>

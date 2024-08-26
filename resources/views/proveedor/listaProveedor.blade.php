@@ -1,6 +1,9 @@
 <table  class="table table-striped">
     <thead align="center" class="bg-secondary text-white">
         <tr>
+            <th colspan="7"><h3>Lista de Proveedores</h3></th>
+        </tr>
+        <tr>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Teléfono</th>

@@ -16,7 +16,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-outdent" aria-hidden="true"></i></span>
               </div>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre de la categoría" class="form-control">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre de la categoría" class="form-control" required>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-success">Guardar</button>
