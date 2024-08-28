@@ -5,20 +5,19 @@
 @section('content')
 <div class="card-header bg-info text-white" align="center">
   <h3><strong> Centros de Trabajo</strong></h3>
-  <h5 class="card-title" align="right">
-      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Centros">
-      <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Centro de Trabajo
-      </button>
-  </h5>
 </div>
 <br>
 @include('Mensajes.msg')
 
 <div class="container col-10" align="center">
     <label for="texto">* El centro de trabajo se debe buscar por medio del <strong>"NOMBRE"</strong></label>
-    <div class="input-group col-5 mb-3">
+    <div class="input-group col-10 mb-3">
         <input type="text" id="texto" name="texto"class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="button-addon2">
         <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Centros">
+            <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Centro de Trabajo
+        </button>
     </div>
 
     <table id="myTable" class="table table-striped" align="center">

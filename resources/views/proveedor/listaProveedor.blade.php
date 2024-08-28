@@ -19,7 +19,7 @@
                     <tr>
                         <th>{{$proveedor->nom_empresa}}</th>
                         <th>{{$proveedor->correo}}</th>
-                        <th>{{preg_replace('~.*(\d{2})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $proveedor->telefono) }}</th>
+                        <th>{{ "(".substr($proveedor->telefono, 0,2).")"." ".substr($proveedor->telefono,2,4)."-".substr($proveedor->telefono,6,5) }}</th>
                         <th>{{$proveedor->direccion}}</th>
                         <th>
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editProveedor{{ $proveedor->id }}" >

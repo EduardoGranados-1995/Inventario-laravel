@@ -66,7 +66,7 @@ Route::put('/actualizarProveedor/{id}', 'ProveedorController@editProveedor')->na
 Route::get('/facturacion', array('as'=>'facturacion', 'middleware'=>'auth', 'uses'=>'FacturacionController@index'));
 Route::post('/facturacion-create', 'FacturacionController@crearFactura')->name('crear.factura');
 Route::get('/get-products-by-category/{categoryId}', 'FacturacionController@getProductos');
-
+Route::get('delete-factura/{id}', 'FacturacionController@eliminarFactura')->name('eliminar.factura');
 Route::get('/get-products-by-category-inv/{categoryId}', 'InventarioController@getProds');
 
 //EXPORTACION A EXCEL

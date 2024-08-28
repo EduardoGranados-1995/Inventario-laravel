@@ -23,8 +23,9 @@ class FacturacionController extends Controller
         $centros = CentrosTrabajo::OrderBy('clave_ct', 'ASC')->get();
         $categoria = Categoria::all();
         $producto = Producto::all();
+        $totalFa = Facturacion::sum('total');
 
-        return view('Facturacion.facturacion', compact('facturas','centros','categoria','producto'));
+        return view('Facturacion.facturacion', compact('facturas','centros','categoria','producto', 'totalFa'));
     }
 
     public function crearFactura(Request $request){
@@ -60,6 +61,14 @@ class FacturacionController extends Controller
         
         $products = Producto::where('categoria_id', $categoryId)->get();
     return response()->json($products);
+
+    }
+
+    public function eliminarFactura($id){
+        $factura = Facturacion::find($id);
+        $factura->delete();
+
+        return redirect()->back();
 
     }
 
