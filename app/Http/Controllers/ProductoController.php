@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Producto;
+use App\Imports\ProductoImport;
+use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
 class ProductoController extends Controller
@@ -13,9 +15,9 @@ class ProductoController extends Controller
         $categoria = DB::table('categorias')->select('*')->get();
 
         $producto = DB::table('productos as p')
-        ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
-        ->select('p.*', 'c.nombre as nombre_cat')
-        ->get();
+        ->leftjoin('categorias as c', 'p.categoria_id', '=', 'c.id')
+        ->select('p.*', 'c.nombre as nom_cat')
+        ->paginate(15);
 
         return view('Producto.producto', compact('categoria', 'producto'));
     }
@@ -31,9 +33,19 @@ class ProductoController extends Controller
         return redirect()->back();
     }
 
+    public function import(Request $request) 
+    {
+        $file = $request->file('documento_excel');
+
+        Excel::import(new ProductoImport, $file);
+
+        return redirect()->back()->with('success', 'All good!');
+    }
+
     public function guardarProducto(Request $request){
         Producto::create([
             'categoria_id' => $request->producto,
+            'clave_producto' => $request->clave,
             'nombre_producto' => $request->nombre,
             'detalles' => $request->detalles,
         ]);

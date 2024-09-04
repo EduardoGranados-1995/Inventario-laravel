@@ -17,11 +17,18 @@
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-outdent" aria-hidden="true"></i></span>
               </div>
               <select name="producto" id="producto" class="form-control" required>
-                <option value="">Seleccione una Opción...</option>
+                <option selected disabled>{{ $pro->nom_cat }}</option>
                 @foreach($categoria as $cat)
                   <option value="{{$cat->id}}">{{$cat->nombre}}</option>
                 @endforeach
               </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" id="clave" name="clave" class="form-control" value="{{ $pro->clave_producto }}" required>
             </div>
 
             <div class="input-group mb-3">

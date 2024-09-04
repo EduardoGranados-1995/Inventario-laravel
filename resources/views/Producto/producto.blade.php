@@ -67,6 +67,14 @@
 
             <div id="productos" class="container tab-pane fade">
                 <br>
+
+                <!-- <form action="{{ route('users.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="documento_excel" />
+                    <button type="submit">Import Excel</button>
+                </form> -->
+
+
                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#NuevoProducto">
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Producto
                 </button>
@@ -77,7 +85,7 @@
                             <th colspan="5"><h3>Productos</h3></th>
                         </tr>
                         <tr>
-                            <th>Categoría</th>
+                            <th>Clave</th>
                             <th>Nombre del Producto</th>
                             <th>Detalles</th>
                             <th>Editar</th>
@@ -87,7 +95,7 @@
                     <tbody align="center">
                         @foreach($producto as $pro)
                             <tr>
-                                <td>{{$pro->nombre_cat}}</td>
+                                <td>{{$pro->clave_producto}}</td>
                                 <td>{{$pro->nombre_producto}}</td>
                                 <td>{{$pro->detalles}}</td>
 
@@ -106,6 +114,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                <!-- Links de paginación -->
+                    <div class="pagination">
+                        {{ $producto->links() }}
+                    </div>
             </div>
         </div>
     </div>

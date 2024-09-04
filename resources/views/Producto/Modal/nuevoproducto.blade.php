@@ -26,6 +26,13 @@
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" id="clave" name="clave" class="form-control" placeholder="Clave del Producto" required>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-archive" aria-hidden="true"></i></span>
               </div>
               <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre del Producto" required>

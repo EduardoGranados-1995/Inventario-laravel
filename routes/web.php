@@ -41,6 +41,8 @@ Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name
 Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
 Route::put('/editar-producto/{id}', 'ProductoController@editarProducto')->name('editar.producto');
 Route::get('delete-producto/{id}', 'ProductoController@eliminarProducto')->name('eliminar.producto');
+Route::post('/import-producto', 'ProductoController@import')->name('users.import');
+
 
 
 //RUTAS PARA LOS ARTICULOS

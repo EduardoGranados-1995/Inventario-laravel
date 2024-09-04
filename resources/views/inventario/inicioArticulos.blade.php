@@ -12,7 +12,7 @@
             <div class="col-8" align="center">
                 <form action="{{url('/buscarArticulo')}}" role="buscar" method="get" class="col-md-10"> 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="buscar" placeholder="Buscar Producto"> <br>
+                        <input type="text" class="form-control" name="buscar" placeholder="Buscar Producto" required> <br>
                         <div class="input-group-append">
                             <input type="submit" value="buscar" class="btn btn-info">
                         </div>
