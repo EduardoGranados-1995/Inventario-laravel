@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categoria;
 use App\Producto;
 use App\Imports\ProductoImport;
+use App\Exports\ArticulosExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
@@ -17,7 +18,7 @@ class ProductoController extends Controller
         $producto = DB::table('productos as p')
         ->leftjoin('categorias as c', 'p.categoria_id', '=', 'c.id')
         ->select('p.*', 'c.nombre as nom_cat')
-        ->paginate(15);
+        ->get();
 
         return view('Producto.producto', compact('categoria', 'producto'));
     }
@@ -88,4 +89,9 @@ class ProductoController extends Controller
         return redirect()->back();
 
     }
+
+    public function exportarExcel(){
+        return Excel::download(new ArticulosExport, 'productos.xlsx');
+    }
+        
 }

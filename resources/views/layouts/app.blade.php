@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
     <!-- CSS only -->
     <!-- JS, Popper.js, and jQuery -->
@@ -23,6 +24,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
 </head>
 
@@ -43,7 +45,8 @@
                     <ul class="navbar-nav col-md-12 ">
                         <a class="nav-link text-dark" href="{{url('/home')}}">Panel</a>
                         <a class="nav-link text-dark" href="{{url('/dashboard')}}" align="center">Centros de Trabajo</a>
-                        <a class="nav-link text-dark" href="{{url('/producto')}}" align="center">Categorías y Productos</a>
+                        <a class="nav-link text-dark" href="{{url('/categoria')}}" align="center">Categorías </a>
+                        <a class="nav-link text-dark" href="{{url('/producto')}}" align="center">Productos</a>
                         <a class="nav-link text-dark" href="{{route('inicioProveedores')}}">Proveedores</a>
                         <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}">Inventario</a>  
                         <a class="nav-link text-dark" href="{{url('/facturacion')}}">Facturación</a>  

@@ -115,7 +115,7 @@
                     </tr>
             @else
                 <tr align="center">
-                    <td colspan="6" class="alert alert-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ninguna factura</td>
+                    <td colspan="8" class="alert alert-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ninguna factura</td>
                 </tr>
             @endif
             </tbody>

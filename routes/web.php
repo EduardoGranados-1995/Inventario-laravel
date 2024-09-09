@@ -44,6 +44,10 @@ Route::get('delete-producto/{id}', 'ProductoController@eliminarProducto')->name(
 Route::post('/import-producto', 'ProductoController@import')->name('users.import');
 
 
+// CATEGORIAS
+Route::get('categoria',array('as'=>'categoria', 'middleware'=>'auth', 'uses' => 'CategoriaController@index'));
+
+
 
 //RUTAS PARA LOS ARTICULOS
 Route::get('agregarArticulo/',array('as'=>'agregarArticulo','middleware'=>'auth','uses'=>'ArticuloController@agregarArticulo'));
@@ -72,11 +76,5 @@ Route::get('delete-factura/{id}', 'FacturacionController@eliminarFactura')->name
 Route::get('/get-products-by-category-inv/{categoryId}', 'InventarioController@getProds');
 
 //EXPORTACION A EXCEL
-
-//Route::get('articulo-list-excel','ArticuloController@exportarExcel')->name('articulos.excel');
-
-Route::get('/exportarExcel/{user_id}',[
-    'as' => 'exportarExcel',
-    'uses' => 'ArticuloController@exportarExcel'
-]);
+Route::get('/exportar-excel','ProductoController@exportarExcel')->name('articulos.excel');
 

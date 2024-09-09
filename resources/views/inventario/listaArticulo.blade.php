@@ -1,5 +1,5 @@
         <center>
-            <table border="1" style="text-align:center" class="table table-striped">
+            <table border="1" style="text-align:center" class="table table-striped" id="tabla-articulos">
                 <thead class="bg-secondary text-white">
                     <tr>
                         <th colspan="9"><h3>Lista de Productos</h3></th>

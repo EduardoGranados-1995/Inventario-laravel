@@ -7,18 +7,15 @@
   <h3><strong> Centros de Trabajo</strong></h3>
 </div>
 <br>
+<div align="center">
+    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Centros">
+        <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Centro de Trabajo
+    </button>
+</div>
 @include('Mensajes.msg')
 
-<div class="container col-10" align="center">
-    <label for="texto">* El centro de trabajo se debe buscar por medio del <strong>"NOMBRE"</strong></label>
-    <div class="input-group col-10 mb-3">
-        <input type="text" id="texto" name="texto"class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="button-addon2">
-        <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Centros">
-            <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Centro de Trabajo
-        </button>
-    </div>
+<div class="container col-12" align="center">
+
 
     <table id="myTable" class="table table-striped" align="center">
         <thead  class="bg-secondary text-white" align="center">
@@ -67,6 +64,48 @@
 
 
 <script>
+    $('#myTable').DataTable({
+        "responsive": true,
+        "columnDefs": [
+          // { targets: [1,2,3], render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' ) },
+          {
+            responsivePriority: 1,
+            targets: 0
+          }
+        ],
+        "order": [
+          [0, "asc"]
+        ],
+        "pageLength": 15,
+        "lengthChange": false,
+        // "paging":   false,
+        // "ordering": false,
+        // "info":     false
+        "language": {
+          "decimal": ".",
+          "thousands": ",",
+          search: "Buscar Centro:",
+          lengthMenu: "Mostrar _MENU_ registros por página",
+          zeroRecords: "No hay registros para mostrar",
+          info: "Mostrando página _PAGE_ de _PAGES_",
+          infoEmpty: "No hay registros disponibles",
+          infoFiltered: "(filtrado de _MAX_ de registros)",
+          paginate: {
+            first: "Primera",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Última"
+          }
+        },
+        // Habilitar búsqueda insensible a acentos con el plugin accent-neutralise
+        "search": {
+          "caseInsensitive": true, // Habilita la búsqueda insensible a mayúsculas y minúsculas
+          "accentNeutralise": true // Habilita la búsqueda insensible a acentos
+        }
+      });
+</script>
+
+<script>
     $('.formulario-eliminar').submit(function(e){
     e.preventDefault();
 
@@ -86,6 +125,4 @@
   });
 </script>
 
-
-<script src="{{asset(url('js/Centros/centros.js'))}}"></script>
 @endsection
