@@ -12,4 +12,15 @@ class CategoriaController extends Controller
         $categoria = DB::table('categorias')->select('*')->get();
         return view('Categoria.categoria',compact('categoria'));
     }
+
+    public function guardarCategoria(Request $request)
+    {
+        // Crear el nuevo registro en la base de datos
+        Categoria::create([
+            'nombre' => $request->nombre,
+        ]);
+
+        // Redireccionar o responder
+        return redirect()->back();
+    }
 }

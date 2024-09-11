@@ -35,10 +35,7 @@ Route::get('/perfil', 'HomeController@perfil')->name('perfil');
 //SECCIONES DE LA PAGINA
 Route::get('/index', function(){return view('index');});
 Route::get('/producto',array('as'=>'producto','middleware'=>'auth','uses'=>'ProductoController@index') );
-Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name('categoria');
 Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
-Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
-Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
 Route::put('/editar-producto/{id}', 'ProductoController@editarProducto')->name('editar.producto');
 Route::get('delete-producto/{id}', 'ProductoController@eliminarProducto')->name('eliminar.producto');
 Route::post('/import-producto', 'ProductoController@import')->name('users.import');
@@ -46,6 +43,9 @@ Route::post('/import-producto', 'ProductoController@import')->name('users.import
 
 // CATEGORIAS
 Route::get('categoria',array('as'=>'categoria', 'middleware'=>'auth', 'uses' => 'CategoriaController@index'));
+Route::post('/categoria-save', 'CategoriaController@guardarCategoria')->name('guardar.categoria');
+Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
+Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
 
 
 

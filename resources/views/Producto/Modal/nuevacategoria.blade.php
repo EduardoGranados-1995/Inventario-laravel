@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="centroT" method="POST" action="{{ route('categoria') }}">
+        <form id="categoria" method="POST" action="{{ route('guardar.categoria') }}">
             @csrf
 
             <div class="input-group mb-3">
