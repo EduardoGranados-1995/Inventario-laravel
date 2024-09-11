@@ -61,7 +61,7 @@
                 @include('proveedor.Modal.editarProveedor')
             @endforeach   
         @else
-            <th class="alert-danger">No hay proveedores, agregue alguno</th><br>
+            <th class="alert-danger" colspan="6"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No hay proveedores, agregue alguno</th><br>
         @endif
     </tbody>
 </table>

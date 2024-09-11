@@ -33,22 +33,26 @@
                 </tr>
             </thead>
             <tbody align="center">
-                @foreach($categoria as $cat)
-                    <tr>
-                        <td>{{$cat->nombre}}</td>
-                        <td>
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCategoria{{ $cat->id }}" >
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <form action="{{ route('eliminar.categoria', $cat->id) }}" class="formulario-eliminar">
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @include('Producto.Modal.editCategoria')
-                @endforeach
+                @if(count($categoria) > 0)
+                    @foreach($categoria as $cat)
+                        <tr>
+                            <td>{{$cat->nombre}}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editCategoria{{ $cat->id }}" >
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <form action="{{ route('eliminar.categoria', $cat->id) }}" class="formulario-eliminar">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @include('Producto.Modal.editCategoria')
+                    @endforeach
+                @else
+                <th class="alert alert-danger" colspan="3"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ninguna categoría</th>
+                @endif
             </tbody>
         </table>
     </div>

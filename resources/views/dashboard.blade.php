@@ -54,9 +54,7 @@
                     @include('Centro.Modal.editarCentro')
                 @endforeach
             @else
-                <td colspan="6">
-                    <div class="alert-danger">No existe ningun centro de trabajo.</div>
-                </td>
+                    <th class="alert-danger" colspan="6"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ningun centro de trabajo.</th>
             @endif
         </tbody>
     </table>

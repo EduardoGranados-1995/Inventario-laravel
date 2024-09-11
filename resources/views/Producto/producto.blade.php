@@ -21,9 +21,11 @@
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalImportar">
                 <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Importar Excel
             </button>
-            <a href="{{route('articulos.excel')}}" class="btn btn-danger">
-                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Exportar Excel
-            </a>
+            @if(count($producto) > 0)
+              <a href="{{route('articulos.excel')}}" class="btn btn-danger">
+                  <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Exportar Excel
+              </a>
+            @endif
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#NuevoProducto">
                 <i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;Nuevo Producto
             </button>

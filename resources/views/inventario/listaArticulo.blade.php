@@ -75,7 +75,7 @@
                         @include('inventario.Modal.actualizarArticulo')
                     @endforeach   
                 @else
-                        <div class="alert-danger">No hay articulos, agregue alguno</div><br>
+                        <th class="alert-danger" colspan="9"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No hay articulos, agregue alguno</th><br>
                 @endif
 
             </table>
