@@ -19,7 +19,7 @@
                     <tr>
                         <th>{{$proveedor->nom_empresa}}</th>
                         <th>{{$proveedor->correo}}</th>
-                        <th>{{preg_replace('~.*(\d{2})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $proveedor->telefono) }}</th>
+                        <th>{{ "(".substr($proveedor->telefono, 0,2).")"." ".substr($proveedor->telefono,2,4)."-".substr($proveedor->telefono,6,5) }}</th>
                         <th>{{$proveedor->direccion}}</th>
                         <th>
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editProveedor{{ $proveedor->id }}" >
@@ -61,7 +61,7 @@
                 @include('proveedor.Modal.editarProveedor')
             @endforeach   
         @else
-            <th class="alert-danger">No hay proveedores, agregue alguno</th><br>
+            <th class="alert-danger" colspan="6"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No hay proveedores, agregue alguno</th><br>
         @endif
     </tbody>
 </table>

@@ -35,12 +35,18 @@ Route::get('/perfil', 'HomeController@perfil')->name('perfil');
 //SECCIONES DE LA PAGINA
 Route::get('/index', function(){return view('index');});
 Route::get('/producto',array('as'=>'producto','middleware'=>'auth','uses'=>'ProductoController@index') );
-Route::post('/producto-categoria', 'ProductoController@guardarCategoria')->name('categoria');
 Route::post('/producto-producto', 'ProductoController@guardarProducto')->name('producto');
-Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
-Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
 Route::put('/editar-producto/{id}', 'ProductoController@editarProducto')->name('editar.producto');
 Route::get('delete-producto/{id}', 'ProductoController@eliminarProducto')->name('eliminar.producto');
+Route::post('/import-producto', 'ProductoController@import')->name('users.import');
+
+
+// CATEGORIAS
+Route::get('categoria',array('as'=>'categoria', 'middleware'=>'auth', 'uses' => 'CategoriaController@index'));
+Route::post('/categoria-save', 'CategoriaController@guardarCategoria')->name('guardar.categoria');
+Route::put('/editar-categoria/{id}', 'ProductoController@editarCategoria')->name('editar.categoria');
+Route::get('delete-categoria/{id}', 'ProductoController@eliminarCategoria')->name('eliminar.categoria');
+
 
 
 //RUTAS PARA LOS ARTICULOS
@@ -66,15 +72,9 @@ Route::put('/actualizarProveedor/{id}', 'ProveedorController@editProveedor')->na
 Route::get('/facturacion', array('as'=>'facturacion', 'middleware'=>'auth', 'uses'=>'FacturacionController@index'));
 Route::post('/facturacion-create', 'FacturacionController@crearFactura')->name('crear.factura');
 Route::get('/get-products-by-category/{categoryId}', 'FacturacionController@getProductos');
-
+Route::get('delete-factura/{id}', 'FacturacionController@eliminarFactura')->name('eliminar.factura');
 Route::get('/get-products-by-category-inv/{categoryId}', 'InventarioController@getProds');
 
 //EXPORTACION A EXCEL
-
-//Route::get('articulo-list-excel','ArticuloController@exportarExcel')->name('articulos.excel');
-
-Route::get('/exportarExcel/{user_id}',[
-    'as' => 'exportarExcel',
-    'uses' => 'ArticuloController@exportarExcel'
-]);
+Route::get('/exportar-excel','ProductoController@exportarExcel')->name('articulos.excel');
 

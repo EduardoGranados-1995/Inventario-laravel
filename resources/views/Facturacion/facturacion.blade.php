@@ -79,7 +79,7 @@
         <br><br>
         <table class="table table-bordered">
             <thead class="bg-secondary text-white" align="center">
-                <tr><th colspan="7"><h3>Listado de Facturas Emitidas</h3></th></tr>
+                <tr><th colspan="8"><h3>Listado de Facturas Emitidas</h3></th></tr>
                 <tr>
                     <th>N° Factura</th>
                     <th>Categoría</th>
@@ -87,25 +87,35 @@
                     <th>Fecha Factura</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
-                    <th>Total</th>
+                    <th>Total Factura</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody align="center">
             @if($facturas->count() >= 1)
                 @foreach($facturas as $fact)
                     <tr>
-                        <td>{{ $fact->id }}</td>
-                        <td>{{ $fact->nom_cat }}</td>
-                        <td>{{ $fact->nombre_producto }}</td>
-                        <td>{{ Carbon\Carbon::parse($fact->fecha_factura)->format('d-m-Y') }}</td>
-                        <td>{{ $fact->cantidad }}</td>
-                        <td>$ {{ $fact->precio }}</td>
-                        <td>$ {{ $fact->total }}</td>
+                        <th>{{ $fact->id }}</th>
+                        <th>{{ $fact->nom_cat }}</th>
+                        <th>{{ $fact->nombre_producto }}</th>
+                        <th>{{ Carbon\Carbon::parse($fact->fecha_factura)->format('d-m-Y') }}</th>
+                        <th>{{ $fact->cantidad }}</th>
+                        <th>$ {{ $fact->precio }}</th>
+                        <th>$ {{ $fact->total }}</th>
+                        <th>
+                            <form action="{{ route('eliminar.factura', $fact->id) }}" class="formulario-eliminar">
+                                <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                        </th>
                     </tr>
                 @endforeach
+                    <tr>
+                        <th colspan="7" class="text-right">TOTAL: $ {{$totalFa}}</th>
+                        
+                    </tr>
             @else
                 <tr align="center">
-                    <td colspan="6" class="alert alert-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ninguna factura</td>
+                    <td colspan="8" class="alert alert-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No existe ninguna factura</td>
                 </tr>
             @endif
             </tbody>
@@ -138,6 +148,23 @@ document.getElementById('category-select').addEventListener('change', function()
     }
 });
 
+$('.formulario-eliminar').submit(function(e){
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Estas Seguro?',
+        text: "¡No podrás modificarlo después!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '¡Si, Eliminar!'
+      }).then((result) => {
+        if (result.value) {
+            this.submit()
+          }
+    })
+  });
 </script>
 
 

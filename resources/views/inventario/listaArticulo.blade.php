@@ -1,5 +1,5 @@
         <center>
-            <table border="1" style="text-align:center" class="table table-striped">
+            <table border="1" style="text-align:center" class="table table-striped" id="tabla-articulos">
                 <thead class="bg-secondary text-white">
                     <tr>
                         <th colspan="9"><h3>Lista de Productos</h3></th>
@@ -75,7 +75,7 @@
                         @include('inventario.Modal.actualizarArticulo')
                     @endforeach   
                 @else
-                        <div class="alert-danger">No hay articulos, agregue alguno</div><br>
+                        <th class="alert-danger" colspan="9"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;No hay articulos, agregue alguno</th><br>
                 @endif
 
             </table>

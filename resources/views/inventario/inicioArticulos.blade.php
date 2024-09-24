@@ -7,30 +7,11 @@
       <h3><strong>Inventario</strong></h3>
     </div>
     <br>
-    <div class="container" >
-        <div class="row">
-            <div class="col-8" align="center">
-                <form action="{{url('/buscarArticulo')}}" role="buscar" method="get" class="col-md-10"> 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="buscar" placeholder="Buscar Producto"> <br>
-                        <div class="input-group-append">
-                            <input type="submit" value="buscar" class="btn btn-info">
-                        </div>
-                    </div>              
-                </form>
-            </div>
-            <div class="col-4">
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#articulo">
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;Agregar Nuevo Artículo
-                </button>
-            </div>
-            <!-- <div class="col-4">
-                <a href="{{url('/home')}}"  class="btn btn-danger" style="margin:33px 0px 0px 50px">Regresar</a>
-            </div> -->
-        </div>
+    <div class="container" align="center">
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#articulo">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;Agregar Nuevo Artículo
+        </button>
     </div>
-
-    <hr>
 
     <div class="container">
         @if(session('message'))
@@ -69,5 +50,48 @@ document.getElementById('category-select').addEventListener('change', function()
     }
 });
 
+</script>
+
+
+<script>
+    $('#tabla-articulos').DataTable({
+        "responsive": true,
+        "columnDefs": [
+          // { targets: [1,2,3], render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' ) },
+          {
+            responsivePriority: 1,
+            targets: 0
+          }
+        ],
+        "order": [
+          [0, "asc"]
+        ],
+        "pageLength": 15,
+        "lengthChange": false,
+        // "paging":   false,
+        // "ordering": false,
+        // "info":     false
+        "language": {
+          "decimal": ".",
+          "thousands": ",",
+          search: "Buscar Producto:",
+          lengthMenu: "Mostrar _MENU_ registros por página",
+          zeroRecords: "No hay registros para mostrar",
+          info: "Mostrando página _PAGE_ de _PAGES_",
+          infoEmpty: "No hay registros disponibles",
+          infoFiltered: "(filtrado de _MAX_ de registros)",
+          paginate: {
+            first: "Primera",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Última"
+          }
+        },
+        // Habilitar búsqueda insensible a acentos con el plugin accent-neutralise
+        "search": {
+          "caseInsensitive": true, // Habilita la búsqueda insensible a mayúsculas y minúsculas
+          "accentNeutralise": true // Habilita la búsqueda insensible a acentos
+        }
+      });
 </script>
 @endsection

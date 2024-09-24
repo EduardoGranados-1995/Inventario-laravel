@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Producto;
+use App\Imports\ProductoImport;
+use App\Exports\ArticulosExport;
+use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
 class ProductoController extends Controller
@@ -13,27 +16,26 @@ class ProductoController extends Controller
         $categoria = DB::table('categorias')->select('*')->get();
 
         $producto = DB::table('productos as p')
-        ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
-        ->select('p.*', 'c.nombre as nombre_cat')
+        ->leftjoin('categorias as c', 'p.categoria_id', '=', 'c.id')
+        ->select('p.*', 'c.nombre as nom_cat')
         ->get();
 
         return view('Producto.producto', compact('categoria', 'producto'));
     }
 
-    public function guardarCategoria(Request $request)
+    public function import(Request $request) 
     {
-        // Crear el nuevo registro en la base de datos
-        Categoria::create([
-            'nombre' => $request->nombre,
-        ]);
+        $file = $request->file('documento_excel');
 
-        // Redireccionar o responder
-        return redirect()->back();
+        Excel::import(new ProductoImport, $file);
+
+        return redirect()->back()->with('success', 'All good!');
     }
 
     public function guardarProducto(Request $request){
         Producto::create([
             'categoria_id' => $request->producto,
+            'clave_producto' => $request->clave,
             'nombre_producto' => $request->nombre,
             'detalles' => $request->detalles,
         ]);
@@ -76,4 +78,9 @@ class ProductoController extends Controller
         return redirect()->back();
 
     }
+
+    public function exportarExcel(){
+        return Excel::download(new ArticulosExport, 'productos.xlsx');
+    }
+        
 }
