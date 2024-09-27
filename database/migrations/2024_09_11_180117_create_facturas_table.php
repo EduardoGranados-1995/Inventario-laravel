@@ -15,15 +15,13 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->integerIncrements('id')->unsigned()->comment('Identificador unívoco de las facturas');
-            // Llave foránea hacia los usuarios
+            $table->integer('numero_factura')->nullable()->comment('Es el número de factura registrada');
             $table->unsignedInteger('ct_id')->nullable(true)->comment('Centro de trabajo para el cual es la factura');
             $table->date('fecha_factura')->nullable()->comment('Almacena la fecha en que se generra la factura');
-            $table->unsignedInteger('categoria_id')->nullable(false)->comment('Almacena el ID de la categoría seleccionada');
-            $table->unsignedInteger('producto_id')->nullable(false)->comment('Almacena el ID del producto seleccionado');
+            $table->unsignedInteger('producto_id')->nullable(true)->comment('Almacena el ID del producto seleccionado');
             $table->decimal('precio', 8,4)->nullable()->comment('Almacena el precio de venta del artículo');
             $table->integer('cantidad')->nullable()->comment('Almacena la cantidad de artículos ingresada');
             $table->decimal('total', 10,2)->nullable()->comment('Almacena el precio total de la factura');
-            // Llave foránea hacia los usuarios
             $table->unsignedInteger('user_id')->nullable(true)->comment('Usuario que registra al proveedor');
             $table->timestamps();
         });

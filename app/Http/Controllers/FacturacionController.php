@@ -16,51 +16,69 @@ class FacturacionController extends Controller
     //
     public function index(){
         $facturas = DB::table('facturas as f')
-        ->join('categorias as c', 'f.categoria_id', '=', 'c.id')
         ->join('productos as p', 'f.producto_id', '=', 'p.id')
-        ->select('f.*', 'c.nombre as nom_cat', 'p.nombre_producto')->get();
+        ->select('f.*', 'p.nombre_producto')->get();
 
         $centros = CentrosTrabajo::OrderBy('clave_ct', 'ASC')->get();
         $categoria = Categoria::all();
         $producto = Producto::all();
         $totalFa = Facturacion::sum('total');
+        $articulos = DB::table('articulos as a')
+                        ->join('productos as p', 'a.producto_id', '=', 'p.id')
+                        ->select('a.*', 'p.nombre_producto')->get();
 
-        return view('Facturacion.facturacion', compact('facturas','centros','categoria','producto', 'totalFa'));
+        $ultimoNumeroFactura = Facturacion::max('numero_factura');
+        $nuevoNumeroFactura = $ultimoNumeroFactura ? $ultimoNumeroFactura + 1 : 1;
+
+        return view('Facturacion.facturacion', compact('facturas','centros','categoria','producto', 'totalFa','articulos','nuevoNumeroFactura'));
     }
 
     public function crearFactura(Request $request){
-        // $validatedData=$this->validate($request,[
-        //     'centro'=>'required',
-        //     'fecha'=>'required',
-        //     'categoria'=>'required',
-        //     'producto'=>'required',
-        //     'precio'=>'numeric|required',
-        //     'cantidad'=>'numeric|required',
-        //     'total'=>'numeric|required',
-
-        // ]);
-        $facturacion= new Facturacion();
         $user=\Auth::user();
-        
 
-        $facturacion->ct_id=$request->input('centro');
-        $facturacion->fecha_factura=$request->input('fecha');
-        $facturacion->categoria_id=$request->input('categoria');
-        $facturacion->producto_id=$request->input('producto');
-        $facturacion->precio=$request->input('precio');
-        $facturacion->cantidad=$request->input('cantidad');
-        $facturacion->total=$request->input('total');
-        $facturacion->user_id=$user->id;
+        // Validar los datos de la factura
+        $validatedData = $request->validate([
+            'numero_factura' => 'required',
+            'producto_id' => 'required|exists:articulos,id',
+            'centro' => 'required',
+            'fecha' => 'required',
+            'precio' => 'required',
+            'cantidad' => 'required|integer|min:1',
+            'total' => 'required'
+        ]);
 
-        $facturacion->save();
+        // Crear la nueva factura
+        $factura = Facturacion::create([
+            'numero_factura' => $validatedData['numero_factura'],
+            'producto_id' => $validatedData['producto_id'],
+            'ct_id' => $validatedData['centro'],
+            'fecha_factura' => $validatedData['fecha'],
+            'precio' => $validatedData['precio'],
+            'cantidad' => $validatedData['cantidad'],
+            'total' => $validatedData['total'],
+            'user_id' => $user->id
+            // otros campos
+        ]);
 
-        return redirect()->back();
+        // Obtener el artículo relacionado
+        $articulo = Articulo::find($validatedData['producto_id']);
+
+        // Verificar si hay suficiente stock
+        if ($articulo->cantidad >= $validatedData['cantidad']) {
+            // Restar la cantidad seleccionada
+            $articulo->cantidad -= $validatedData['cantidad'];
+            $articulo->save();
+        } else {
+            return back()->withErrors(['error' => 'No hay suficiente stock del artículo.']);
+        }
+
+        return redirect()->back()->with('success', 'Factura creada y cantidad de artículo actualizada.');
     }
 
     public function getProductos($categoryId){
         
         $products = Producto::where('categoria_id', $categoryId)->get();
-    return response()->json($products);
+        return response()->json($products);
 
     }
 
