@@ -8,7 +8,7 @@ use App\CentrosTrabajo;
 use App\Categoria;
 use App\Producto;
 use App\Articulo;
-
+use Barryvdh\DomPDF\Facade as PDF;
 use DB;
 
 class FacturacionController extends Controller
@@ -82,6 +82,18 @@ class FacturacionController extends Controller
 
     }
 
+    public function getProductoPrecio($id){
+
+        $producto = Articulo::find($id);
+
+        if($producto){
+            return response()->json(['precio' => $producto->Pventa]);
+        }else{
+            return response()->json(['precio' => 0]);
+        }
+
+    }
+
     public function eliminarFactura($id){
         $factura = Facturacion::find($id);
         $factura->delete();
@@ -90,4 +102,12 @@ class FacturacionController extends Controller
 
     }
 
+    public function descargarFactura($id){
+        $factura = DB::table('facturas')->select('*')->where('id', $id)->get();
+
+        $pdf = \PDF::loadview('Facturacion.PDF.Factura', compact('factura'))->setPaper('a4','landscape');
+        return $pdf->download('Factura.pdf');
+
+
+    }
 }

@@ -74,6 +74,8 @@ Route::post('/facturacion-create', 'FacturacionController@crearFactura')->name('
 Route::get('/get-products-by-category/{categoryId}', 'FacturacionController@getProductos');
 Route::get('delete-factura/{id}', 'FacturacionController@eliminarFactura')->name('eliminar.factura');
 Route::get('/get-products-by-category-inv/{categoryId}', 'InventarioController@getProds');
+Route::get('/get-producto-precio/{id}', 'FacturacionController@getProductoPrecio');
+Route::get('/factura-PDF/{id}', 'FacturacionController@descargarFactura')->name('factura.pdf');
 
 //EXPORTACION A EXCEL
 Route::get('/exportar-excel','ProductoController@exportarExcel')->name('articulos.excel');

@@ -9,7 +9,7 @@ class Articulo extends Model
 {
     protected $table='articulos';
     protected $primaryKey='id';
-    protected $fillable = ['id', 'categoria_id', 'producto_id','cantidad'];
+    protected $fillable = ['id', 'categoria_id', 'producto_id', 'Pventa', 'cantidad'];
 
     public function persona(){
         return $this->belongsTo('App\User','persona_id');

@@ -48,7 +48,7 @@
                                     <tr>
                                         <td><input type="text" name="numero_factura" id="numero_factura" class="form-control" value="{{ $nuevoNumeroFactura }}" readonly></td>
                                         <td>
-                                            <select name="producto_id" id="articulo" class="form-control" required>
+                                            <select name="producto_id" id="articulo" class="form-control" onchange="getProductoPrecio()" required>
                                             <option value="">Seleccione un producto...</option>
                                                 @foreach($articulos as $articulo)
                                                     <option value="{{ $articulo->id }}" data-stock="{{ $articulo->cantidad }}">
@@ -57,7 +57,7 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="number" id="precio" name="precio" class="form-control" min="1" oninput="calcularTotal()" required></td>
+                                        <td><input type="number" id="precio" name="precio" class="form-control" min="1" oninput="calcularTotal()" readonly></td>
                                         <td><input type="number" id="cantidad" name="cantidad" class="form-control" oninput="calcularTotal()" required></td>
                                         <td><input type="number" id="total" name="total" step="0.01" class="form-control" readonly></td>
                                         <!-- <td><button type="button" class="btn btn-danger btn-sm eliminarFila"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td> -->
@@ -93,7 +93,7 @@
         @if($facturas->count() >= 1)
             @foreach($facturas as $fact)
                 <tr>
-                    <th>{{ $fact->id }}</th>
+                    <th>{{ $fact->numero_factura }}</th>
                     <th>{{ $fact->nombre_producto }}</th>
                     <th>{{ Carbon\Carbon::parse($fact->fecha_factura)->format('d-m-Y') }}</th>
                     <th>{{ $fact->cantidad }}</th>
@@ -101,8 +101,9 @@
                     <th>$ {{ $fact->total }}</th>
                     <th>
                         <form action="{{ route('eliminar.factura', $fact->id) }}" class="formulario-eliminar">
-                            <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger btn-sm m-1"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </form>
+                        <a href="{{route('factura.pdf', $fact->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
                     </th>
                 </tr>
             @endforeach
@@ -117,6 +118,26 @@
         @endif
     </tbody>
 </table>
+
+
+<script>
+    function getProductoPrecio(){
+        var productoId = document.getElementById('articulo').value;
+
+        if(productoId){
+            //Se realiza la petición AJAX a laravel para obtener el precio del producto
+            fetch('/get-producto-precio/' + productoId)
+                .then(response => response.json())
+                .then(data => {
+                    //Se asigna el precio al input
+                    document.getElementById('precio').value = data.precio;
+                })
+                .catch(error => console.error('Error:', error));
+        }else{
+            document.getElementById('precio').value = '';
+        }
+    }
+</script>
 
 <script>
     const articuloSelect = document.getElementById('articulo');
