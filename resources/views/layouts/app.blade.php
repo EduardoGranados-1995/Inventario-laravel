@@ -42,14 +42,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <strong>
-                    <ul class="navbar-nav col-md-12 ">
-                        <a class="nav-link text-dark" href="{{url('/home')}}">Panel</a>
-                        <a class="nav-link text-dark" href="{{url('/dashboard')}}" align="center">Centros de Trabajo</a>
-                        <a class="nav-link text-dark" href="{{url('/categoria')}}" align="center">Categorías </a>
-                        <a class="nav-link text-dark" href="{{url('/producto')}}" align="center">Productos</a>
-                        <a class="nav-link text-dark" href="{{route('inicioProveedores')}}">Proveedores</a>
-                        <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}">Inventario</a>  
-                        <a class="nav-link text-dark" href="{{url('/facturacion')}}">Facturación</a>  
+                    <ul class="navbar-nav">
+                        @if(Auth::user()->isUser())
+                            <a class="nav-link text-dark" href="{{url('/solicitud')}}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp;Solicitud</a>
+                        @else
+                            <a class="nav-link text-dark" href="{{url('/home')}}"> <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Panel</a>
+                            <a class="nav-link text-dark" href="{{url('/dashboard')}}" align="center"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;Centros de Trabajo</a>
+                            <a class="nav-link text-dark" href="{{url('/categoria')}}" align="center"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Categorías </a>
+                            <a class="nav-link text-dark" href="{{url('/producto')}}" align="center"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Productos</a>
+                            <a class="nav-link text-dark" href="{{route('inicioProveedores')}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Proveedores</a>
+                            <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}"><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp;Inventario</a>  
+                            <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a>  
+                        @endif
                     </ul>
                 </strong>
 
@@ -103,102 +107,6 @@
         @yield('content')
     </main>
 </div>
-
-<!--
-    
-    <footer class="page-footer font-small mdb-color pt-4" style="background:#45526E">
-
-        
-        <div class="container text-center text-md-left">
-
-        
-        <div class="row text-center text-md-left mt-3 pb-3">
-
-            
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">¿Que hacemos?</h6>
-            <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                consectetur
-                adipisicing elit.</p>
-            </div>
-            
-
-            <hr class="w-100 clearfix d-md-none">
-
-          
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Producto</h6>
-            <p>
-                <a href="{{url('/')}}">MiInventarioOnline</a>
-            </p>
-            
-            </div>
-           
-
-            <hr class="w-100 clearfix d-md-none">
-
-            
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Links</h6>
-            <p>
-                <a href="{{url('/nosotros')}}">Nosotros</a>
-            </p>
-            <p>
-                <a href="{{url('/blog')}}">Blog informativo</a>
-            </p>
-            <p>
-                <a href="{{url('/login')}}">Inicio de sesion</a>
-            </p>
-            <p>
-                <a href="{{url('/producto')}}">Producto</a>
-            </p>
-            </div>
-
-            
-            <hr class="w-100 clearfix d-md-none">
-
-            
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Contactenos</h6>
-            <p> Lima, 15024, PE</p>
-            <p> info@gmail.com</p>
-            <p> + 01 234 567 88</p>
-            </div>
-           
-
-        </div>
-      
-        <hr>
-
-    
-        <div class="row d-flex align-items-center">
-
-         
-            <div class="col-md-7 col-lg-8">
-
-        
-            <p class="text-center text-md-left">© 2020 Copyright:
-                <a href="{{url('/')}}">
-                <strong> MiInventarioOnline.com</strong>
-                </a>
-            </p>
-
-            </div>
-     
-            <div class="col-md-5 col-lg-4 ml-lg-0">
-
-
-
-        </div>
-  
-        </div>
-        
-
-    </footer>
-  
-    
--->
-
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

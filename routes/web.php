@@ -18,6 +18,10 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::get('/', function () {return view('index');});
 Auth::routes();
 
+
+// RUTAS PARA LA SOLICITD 
+Route::get('/solicitud', 'SolicitudController@index')->middleware('role:user');
+
 //RUTAS INTERNAS DE ADMINISTRACION
 Route::get('/home', array('as'=>'home','middleware'=>'auth','uses'=>'HomeController@index'));
 Route::get('/dashboard', array('as'=>'dashboard','middleware'=>'auth','uses'=>'CentroController@inicio'));
