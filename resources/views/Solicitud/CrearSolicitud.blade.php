@@ -1,5 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>HOLAAAAA Usuario</h1>
+<div class="card">
+  <div class="card-header bg-info text-white" align="center" >
+    <h2>Solicitud para Almacén</h2>
+  </div>
+  <div class="card-body">
+
+
+  </div>
+</div>
+
+
+
 @endsection

@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Almacen | INBAL</title>
+    <title>Almacén | INBAL</title>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    
+
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
@@ -23,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
 </head>
@@ -32,7 +33,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm ">
         <a class="navbar-brand" href="{{ url('/home') }}"  >
-            <img  src="{{asset(url('img/logo-inbal.png'))}}" alt="" width="400px">
+            <img  src="{{asset(url('img/logo-inbal.png'))}}" alt="" width="500px" height="70px">
         </a>
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -52,7 +53,7 @@
                             <a class="nav-link text-dark" href="{{url('/producto')}}" align="center"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Productos</a>
                             <a class="nav-link text-dark" href="{{route('inicioProveedores')}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Proveedores</a>
                             <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}"><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp;Inventario</a>  
-                            <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a>  
+                            <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a> 
                         @endif
                     </ul>
                 </strong>
@@ -76,7 +77,7 @@
 
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-info" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <strong><i class="fa fa-user-o fa-2x" aria-hidden="true"></i>&nbsp;{{ Auth::user()->name }}</strong> <span class="caret"></span>
                             </a>
 

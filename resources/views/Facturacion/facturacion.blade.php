@@ -76,6 +76,14 @@
     </div>
 </div>
 
+<div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>   
+    @endif
+</div>
+
 <table class="table table-bordered">
     <thead class="bg-secondary text-white" align="center">
         <tr><th colspan="8"><h3>Listado de Facturas Emitidas</h3></th></tr>
