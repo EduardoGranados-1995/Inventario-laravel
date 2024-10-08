@@ -16,7 +16,7 @@ class FacturacionController extends Controller
     //
     public function index(){
         $facturas = DB::table('facturas as f')
-        ->join('productos as p', 'f.producto_id', '=', 'p.id')
+        ->leftjoin('productos as p', 'f.producto_id', '=', 'p.id')
         ->select('f.*', 'p.nombre_producto')->get();
 
         $centros = CentrosTrabajo::OrderBy('clave_ct', 'ASC')->get();

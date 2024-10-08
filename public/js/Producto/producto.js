@@ -1,5 +1,4 @@
-// Busqueda de Centros de Trabajo
-$('#myTable').DataTable({
+$('#tabla-productos').DataTable({
     "responsive": true,
     "columnDefs": [
       // { targets: [1,2,3], render: $.fn.dataTable.render.number( ',', '.', 2, '$ ' ) },
@@ -19,7 +18,7 @@ $('#myTable').DataTable({
     "language": {
       "decimal": ".",
       "thousands": ",",
-      search: "Buscar Centro:",
+      search: "Buscar Producto:",
       lengthMenu: "Mostrar _MENU_ registros por página",
       zeroRecords: "No hay registros para mostrar",
       info: "Mostrando página _PAGE_ de _PAGES_",
@@ -39,7 +38,6 @@ $('#myTable').DataTable({
     }
 });
 
-// ELIMINAR CENTRO DE TRABAJO
 $('.formulario-eliminar').submit(function(e){
     e.preventDefault();
 
@@ -54,6 +52,6 @@ $('.formulario-eliminar').submit(function(e){
       }).then((result) => {
         if (result.value) {
             this.submit()
-        }
+          }
     })
 });
