@@ -5,7 +5,7 @@
 @section('content')
 <!-- NUEVO DIV -->
 <div class="card">
-  <div class="card-header bg-info text-white" align="center">
+  <div class="card-header text-white" align="center">
     <h3><strong>Inventario de Productos</strong></h3>
   </div>
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header bg-info text-white" align="center" >
+    <div class="card-header text-white" align="center" >
         <h2>Facturación</h2>
     </div>
     <div class="card-body" align="right">

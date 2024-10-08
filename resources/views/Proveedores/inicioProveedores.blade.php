@@ -3,7 +3,7 @@
 @section('content')
 @include('Proveedores.Modal.agregarProveedor')
 
-<div class="card-header bg-info text-white" align="center">
+<div class="card-header text-white" align="center">
   <h3><strong>Proveedores</strong></h3>
 </div>
 <div class="card">

@@ -28,6 +28,12 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
 </head>
+<style>
+div.card-header {
+    background-color: #109375;
+ }
+
+</style>
 
 <body>
 <div id="app">
@@ -53,7 +59,8 @@
                             <a class="nav-link text-dark" href="{{url('/producto')}}" align="center"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Productos</a>
                             <a class="nav-link text-dark" href="{{route('inicioProveedores')}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Proveedores</a>
                             <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}"><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp;Inventario</a>  
-                            <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a> 
+                            <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a>
+                            <a class="nav-link text-dark" href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Solicitudes</a> 
                         @endif
                     </ul>
                 </strong>

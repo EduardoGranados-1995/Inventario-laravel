@@ -42,7 +42,6 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-                    @guest
                         <li class="nav-item">
                             <!-- <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesion') }}</a> -->
                         </li>
@@ -51,7 +50,6 @@
                                 <a class="nav-link text-info" href="{{ route('register') }}"><h5><strong>{{ __('Registro') }}&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></strong></h5></a>
                             </li>
                         @endif
-                    @endguest
                 </ul>
             </div>
         </div>

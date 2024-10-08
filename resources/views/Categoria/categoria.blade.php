@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="card-header bg-info text-white" align="center">
+    <div class="card-header text-white" align="center">
         <h3><strong>Categorías</strong></h3>
     </div>    
 <br>
