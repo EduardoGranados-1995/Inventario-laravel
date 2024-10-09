@@ -21,6 +21,7 @@ Auth::routes();
 
 // RUTAS PARA LA SOLICITD 
 Route::get('/solicitud', 'SolicitudController@index')->middleware('role:user');
+Route::post('/guardar-solicitud', 'SolicitudController@guardar')->name('guardar.solicitud');
 
 //RUTAS INTERNAS DE ADMINISTRACION
 Route::get('/home', array('as'=>'home','middleware'=>'auth','uses'=>'HomeController@index'));

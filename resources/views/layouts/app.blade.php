@@ -37,37 +37,53 @@ div.card-header {
 
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ url('/home') }}"  >
-            <img  src="{{asset(url('img/logo-inbal.png'))}}" alt="" width="500px" height="70px">
+            <img  src="{{asset(url('img/logo-inbal.png'))}}" alt="" width="400px" height="60px">
         </a>
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <strong>
-                    <ul class="navbar-nav">
-                        @if(Auth::user()->isUser())
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <strong>
+                <ul class="navbar-nav">
+                    @if(Auth::user()->isUser())
+                        <li class="nav-item active">
                             <a class="nav-link text-dark" href="{{url('/solicitud')}}"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>&nbsp;Solicitud</a>
-                        @else
+                        </li>
+                    @else
+                        <li class="nav-item">
                             <a class="nav-link text-dark" href="{{url('/home')}}"> <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Panel</a>
-                            <a class="nav-link text-dark" href="{{url('/dashboard')}}" align="center"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;Centros de Trabajo</a>
-                            <a class="nav-link text-dark" href="{{url('/categoria')}}" align="center"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Categorías </a>
-                            <a class="nav-link text-dark" href="{{url('/producto')}}" align="center"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{{url('/dashboard')}}"><i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;Centros de Trabajo</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;Almacén
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="nav-link text-dark" href="{{url('/categoria')}}"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Categorías </a>
+                                <a class="nav-link text-dark" href="{{url('/producto')}}"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;Productos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" href="{{route('inicioProveedores')}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Proveedores</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" href="{{url('/inicioArticulos')}}"><i class="fa fa-file-archive-o" aria-hidden="true"></i>&nbsp;Inventario</a>  
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a>
-                            <a class="nav-link text-dark" href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Solicitudes</a> 
-                        @endif
-                    </ul>
-                </strong>
-
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Solicitudes</a>  
+                        </li>
+                    @endif
+                </ul>
+            </strong>
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
@@ -79,10 +95,6 @@ div.card-header {
                             </li>
                         @endif
                     @else
-
-
-
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-info" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <strong><i class="fa fa-user-o fa-2x" aria-hidden="true"></i>&nbsp;{{ Auth::user()->name }}</strong> <span class="caret"></span>
@@ -106,8 +118,7 @@ div.card-header {
                                 </div>
                         </li>
                     @endguest
-                </ul>
-            </div>
+            </ul>
         </div>
     </nav>
 
