@@ -23,6 +23,10 @@ Auth::routes();
 Route::get('/solicitud', 'SolicitudController@index')->middleware('role:user');
 Route::post('/guardar-solicitud', 'SolicitudController@guardar')->name('guardar.solicitud');
 
+// RUTAS PARA RESPUESTA DE LA SOLICITUD
+Route::get('/solicitud-respuesta', 'SolicitudRespuestaController@index')->name('respuesta.solicitud');
+Route::get('/solicitud-respuesta/detalles/{id}', 'SolicitudRespuestaController@detalles')->name('detalles');
+
 //RUTAS INTERNAS DE ADMINISTRACION
 Route::get('/home', array('as'=>'home','middleware'=>'auth','uses'=>'HomeController@index'));
 Route::get('/dashboard', array('as'=>'dashboard','middleware'=>'auth','uses'=>'CentroController@inicio'));

@@ -29,7 +29,7 @@
           <select name="centro" id="centro" class="form-control">
             <option value="">Seleccione un centro de trabajo</option>
             @foreach($centros as $centro)
-              <option value="{{ $centro->clave_ct }}">{{ $centro->nombre_ct }}</option>
+              <option value="{{ $centro->clave_ct }}">{{ $centro->clave_ct}} | {{ $centro->nombre_ct }}</option>
             @endforeach
           </select>  
         </div>

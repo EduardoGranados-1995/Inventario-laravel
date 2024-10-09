@@ -77,7 +77,7 @@ div.card-header {
                             <a class="nav-link text-dark" href="{{url('/facturacion')}}"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Facturación</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Solicitudes</a>  
+                            <a class="btn btn-light" href="{{route('respuesta.solicitud')}}"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Solicitudes&nbsp;<span class="badge badge-warning">{{ $solicitudes }}</span></a>  
                         </li>
                     @endif
                 </ul>
