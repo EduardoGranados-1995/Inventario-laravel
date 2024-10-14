@@ -101,7 +101,7 @@
                                     {{ __('Registrar') }}
                                 </button>
 
-                                <a href="/login"><span class="btn btn-danger"> {{ __('Cancelar') }}</span></a>
+                                <a href="/"><span class="btn btn-danger"> {{ __('Cancelar') }}</span></a>
 
 
                             </div>
