@@ -5,42 +5,55 @@
   <div class="card-header text-white" bg-color="#248801" align="center" >
     <h2>Detalles de la Solicitud</h2>
   </div>
-
-  <div align="right">
-    <a href="{{ url('/solicitud-respuesta')}}" class="btn btn-warning m-4"><i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Regresar</a>
+  <br>
+  <div class="row">
+    <div class="col-7 text-right">
+      <p><strong>Nota: </strong>En esta sección se deberá revisar la información de la solicitud recibida, para de esa forma validar o rechazar la misma.</p>
+    </div>
+    <div class="col-5 text-right" >
+      <a href="{{ route('respuesta.solicitud') }}" class="btn btn-warning"><i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;Regresar</a> &nbsp;
+    </div>
   </div>
-
-
-    <table class="table table-bordered">
-      <thead class="text-center">
-        <tr>
-          <th colspan="2">Listado de Solicitudes Recibidas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <strong>Nombre del Solicitante: </strong>{{ $solicitud->nombre }}
-          </td>
-          <td>
-            <strong>Centro de Trabajo: </strong>{{ $solicitud->ct_id }}
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>Producto Solicitado: </strong>{{ $solicitud->producto_id }}
-          </td>
-          <td>
-            <strong>Cantidad Solicitada: </strong>{{ $solicitud->cantidad }}
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <strong>Descripcion: </strong>{{ $solicitud->descripcion }}
-          </td>
-        </tr>
-        <tr class="text-right">
-      </tbody>
-    </table> 
+  <br>
+  @foreach($solicitud as $soli)  
+    <div class="container">
+      <div class="row">
+        <div class="border border-dark col-12 bg-secondary text-white text-center">
+          <h2>Detalles para la Solicitud Número {{ $soli->id }}</h2>
+        </div>
+      </div>
+      <h5>
+        <div class="row">
+          <div class="border border-dark col-6">
+            <strong>Solicitante: </strong>{{ $soli->nombre }}
+          </div>
+          <div class="border border-dark col-6 text-justify">
+            <strong>Descripción: </strong>{{ $soli->descripcion }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="border border-dark col-3">
+            <strong>Producto: </strong>
+          </div>
+          <div class="border border-dark col-3">
+            {{ $soli->clave_producto }} | {{ $soli->nombre_producto }}
+          </div>
+          <div class="border border-dark col-3">
+            <strong>Cantidad: </strong>
+          </div>
+          <div class="border border-dark col-3">
+              {{ $soli->cantidad }}
+          </div>
+        </div>
+      </h5>
+      <div class="row">
+        <div class="col-12 text-right">
+          <a href="" class="btn btn-success">Autorizar</a>
+          <a href="" class="btn btn-danger">Rechazar</a>
+        </div>
+      </div>
+    </div>
+  @endforeach 
+  <br>
 </div>
 @endsection

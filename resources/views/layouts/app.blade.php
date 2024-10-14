@@ -91,7 +91,7 @@ div.card-header {
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                                <!-- <a class="nav-link text-dark" href="{{ route('register') }}">{{ __('Registro') }}</a> -->
                             </li>
                         @endif
                     @else

@@ -22,6 +22,7 @@ Auth::routes();
 // RUTAS PARA LA SOLICITD 
 Route::get('/solicitud', 'SolicitudController@index')->middleware('role:user');
 Route::post('/guardar-solicitud', 'SolicitudController@guardar')->name('guardar.solicitud');
+Route::get('/get-products-by-category/{categoryId}', 'SolicitudController@getProductoByCategoria');
 
 // RUTAS PARA RESPUESTA DE LA SOLICITUD
 Route::get('/solicitud-respuesta', 'SolicitudRespuestaController@index')->name('respuesta.solicitud');

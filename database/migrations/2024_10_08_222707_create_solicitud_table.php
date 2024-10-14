@@ -17,6 +17,7 @@ class CreateSolicitudTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('ct_id');
+            $table->integer('categoria_id');
             $table->integer('producto_id');
             $table->integer('cantidad');
             $table->string('descripcion');

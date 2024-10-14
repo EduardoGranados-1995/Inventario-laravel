@@ -16,6 +16,12 @@
   </div>
 
   <br>
+  <div class="card text-center" >
+    <div class="card-body">
+      <strong class="badge badge-danger">*Nota: </strong> Ingrese todos los datos para poder realizar una solicitud y posteriormente enviarla para autorización.
+    </div>
+  </div>
+  <br>
   <form id="form-solicitud" action="{{route('guardar.solicitud')}}" method="POST" enctype='multipart/form-data'>
     @csrf
     <div class="container">
@@ -38,17 +44,23 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-6">
-          <label for="producto"><strong>Producto</strong></label>
-          <select name="producto" id="producto" class="form-control">
-            <option value="">Selecciona el producto a solicitar</option>
-            @foreach($productos as $producto)
-              <option value="{{ $producto->id }}">{{$producto->clave_producto}} | {{$producto->nombre_producto}}</option>
-            @endforeach
+        <div class="col-4">
+          <label for="categoria"><strong>Categoria</strong></label>
+          <select id="categoria-select" name="categoria" class="form-control" request>
+              <option value="">Seleccione una categoría</option>
+              @foreach($categories as $categoria)
+                  <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+              @endforeach
           </select>
         </div>
-        <div class="col-6">
-          <label for="cantidad"><strong>Cantidad</strong></label>
+
+        <div class="col-4">
+          <label for="producto"><strong>Producto</strong></label>
+          <select id="producto-select" name="producto" class="form-control">
+              <option value="">Seleccione el producto a solicitar</option>
+          </select>
+        </div>
+        <div class="col-4"><strong>Cantidad</strong></label>
           <input type="number" id="cantidad" name="cantidad" class="form-control" placeholder="Ingrese la cantidad a solicitar del producto">
         </div>
       </div>
@@ -72,6 +84,31 @@
 
 
 <script>
+document.getElementById('categoria-select').addEventListener('change', function() {
+    var categoryId = this.value;
+    
+    // Limpiar el select de productos
+    var productSelect = document.getElementById('producto-select');
+    productSelect.innerHTML = '<option value="">Seleccione el producto a solicitar</option>';
+    
+    if (categoryId) {
+        // Hacer la solicitud AJAX para obtener los productos
+        fetch(`/get-products-by-category/${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function(product) {
+                    var option = document.createElement('option');
+                    option.value = product.id;
+                    option.text = product.nombre_producto;
+                    productSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
+
+
+
   document.getElementById('submitBtn').addEventListener('click', function(event) {
       event.preventDefault(); // Evita que el formulario se envíe inmediatamente
 

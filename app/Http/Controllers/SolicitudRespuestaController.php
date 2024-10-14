@@ -18,7 +18,9 @@ class SolicitudRespuestaController extends Controller
     }
 
     public function detalles($id){
-        $solicitud = Solicitud::find($id);
+        $solicitud = DB::table('solicitud as s')
+        ->join('productos as p', 's.producto_id', '=', 'p.id')
+        ->select('s.*','p.clave_producto', 'p.nombre_producto')->where('s.id', $id)->get();
         
         return view('Solicitud.RespuestaDetalles', compact('solicitud'));
     }
