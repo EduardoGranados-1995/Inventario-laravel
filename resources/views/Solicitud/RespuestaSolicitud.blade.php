@@ -5,8 +5,8 @@
   <div class="card-header text-white" bg-color="#248801" align="center" >
     <h2>Listado de Solicitudes</h2>
   </div>
-
-  <table class="table table-striped m-5 text-center">
+<br>
+  <table class="table table-striped text-center">
     <thead>
         <tr>
             <th>N° Solicitud</th>

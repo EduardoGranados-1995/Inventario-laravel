@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+                <div class="card-header text-center">{{ __('Registro de Usuarios') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -48,12 +48,6 @@
                                     <option value="admin">Administrador</option>
                                     <option value="user">Usuario</option>
                                 </select>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -69,6 +63,22 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        @php
+                            use App\CentrosTrabajo;
+                            $centros = CentrosTrabajo::all();
+                        @endphp
+                        <div class="form-group row">
+                            <label for="centro" class="col-md-4 col-form-label text-md-right">{{ __('Centro de Trabajo') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="centro" id="centro" class="form-control" value="{{ old('centro') }}" required autocomplete="centro">
+                                    <option value="">Seleccione un centro de trabajo...</option>
+                                    @foreach($centros as $centro)
+                                    <option value="{{ $centro->clave_ct }}">{{ $centro->clave_ct }} | {{ $centro->nombre_ct }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 

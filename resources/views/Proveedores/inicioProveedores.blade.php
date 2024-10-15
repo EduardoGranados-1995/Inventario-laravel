@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
-@section('content')
 @include('Proveedores.Modal.agregarProveedor')
-
+@section('content')
 <div class="card-header text-white" align="center">
   <h3><strong>Proveedores</strong></h3>
 </div>
 <div class="card">
-    <div class="card-body" align="center">
-        <div class="container" >
+        <div class="container text-center" >
             <div class="row">
                 <div class="col-6">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
@@ -21,7 +19,6 @@
                 </div>
             </div>
         </div>
-
         <hr>
 
         <div class="container">
@@ -34,15 +31,5 @@
         </div>
 
         @include('proveedor.listaProveedor')
-        
-        <br>
-        <div class="fa-pull-right" >
-            {{$proveedores->links()}}
-        </div>
-        <hr>
-
-    </div>
 </div>
-
-
 @endsection
