@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Solicitud;
+use App\solicitudRespuesta;
 use App\CentrosTrabajo;
 use DB;
 
@@ -23,5 +24,21 @@ class SolicitudRespuestaController extends Controller
         ->select('s.*','p.clave_producto', 'p.nombre_producto')->where('s.id', $id)->get();
         
         return view('Solicitud.RespuestaDetalles', compact('solicitud'));
+    }
+
+    public function rechazoSolicitud(Request $request){
+        $respuesta = solicitudRespuesta::create([
+            'solicitud_id' => $request->solicitud,
+            'producto_id' => $request->producto,
+            'ct_id' => $request->centro,
+            'estatus' => "Rechazada"
+        ]);
+
+        $solicitud = Solicitud::find($request->solicitud);
+        $solicitud->estatus_solicitud = "Rechazada";
+        $solicitud->save();
+       
+        return redirect()->back();
+
     }
 }

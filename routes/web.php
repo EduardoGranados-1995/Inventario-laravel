@@ -27,6 +27,7 @@ Route::get('/get-products-by-category/{categoryId}', 'SolicitudController@getPro
 // RUTAS PARA RESPUESTA DE LA SOLICITUD
 Route::get('/solicitud-respuesta', 'SolicitudRespuestaController@index')->name('respuesta.solicitud');
 Route::get('/solicitud-respuesta/detalles/{id}', 'SolicitudRespuestaController@detalles')->name('detalles');
+Route::post('/rechazo-solicitud', 'SolicitudRespuestaController@rechazoSolicitud')->name('rechazo.solicitud');
 
 //RUTAS INTERNAS DE ADMINISTRACION
 Route::get('/home', array('as'=>'home','middleware'=>'auth','uses'=>'HomeController@index'));

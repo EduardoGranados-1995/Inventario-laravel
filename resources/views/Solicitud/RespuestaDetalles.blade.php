@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@include('Solicitud.Modal.SolicitudRechazada')
 @section('content')
 <div class="card">
   <div class="card-header text-white" bg-color="#248801" align="center" >
@@ -15,45 +16,51 @@
     </div>
   </div>
   <br>
-  @foreach($solicitud as $soli)  
-    <div class="container">
-      <div class="row">
-        <div class="border border-dark col-12 bg-secondary text-white text-center">
-          <h2>Detalles para la Solicitud Número {{ $soli->id }}</h2>
+    @foreach($solicitud as $soli)  
+      <div class="container">
+        <div class="row">
+          <div class="border border-dark col-12 bg-secondary text-white text-center">
+            <h2>Detalles para la Solicitud Número {{ $soli->id }}</h2>
+          </div>
+        </div>
+        <h5>
+          <div class="row">
+            <div class="border border-dark col-6">
+              <strong>Solicitante: </strong>{{ $soli->nombre }}
+            </div>
+            <div class="border border-dark col-6 text-justify">
+              <strong>Descripción: </strong>{{ $soli->descripcion }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="border border-dark col-3">
+              <strong>Producto: </strong>
+            </div>
+            <div class="border border-dark col-3">
+              {{ $soli->clave_producto }} | {{ $soli->nombre_producto }}
+            </div>
+            <div class="border border-dark col-3">
+              <strong>Cantidad: </strong>
+            </div>
+            <div class="border border-dark col-3">
+                {{ $soli->cantidad }}
+            </div>
+          </div>
+        </h5>
+        <div class="row">
+          <div class="col-12" align="center">
+            @if($soli->estatus_solicitud == "Rechazada")
+              <p class="alert alert-danger col-3">La solicitud ha sido rechazada.</p>
+            @else
+              <a href="" class="btn btn-success">Autorizar</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#SoliRechazo">
+                Rechazar
+              </button>
+            @endif
+          </div>
         </div>
       </div>
-      <h5>
-        <div class="row">
-          <div class="border border-dark col-6">
-            <strong>Solicitante: </strong>{{ $soli->nombre }}
-          </div>
-          <div class="border border-dark col-6 text-justify">
-            <strong>Descripción: </strong>{{ $soli->descripcion }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="border border-dark col-3">
-            <strong>Producto: </strong>
-          </div>
-          <div class="border border-dark col-3">
-            {{ $soli->clave_producto }} | {{ $soli->nombre_producto }}
-          </div>
-          <div class="border border-dark col-3">
-            <strong>Cantidad: </strong>
-          </div>
-          <div class="border border-dark col-3">
-              {{ $soli->cantidad }}
-          </div>
-        </div>
-      </h5>
-      <div class="row">
-        <div class="col-12 text-right">
-          <a href="" class="btn btn-success">Autorizar</a>
-          <a href="" class="btn btn-danger">Rechazar</a>
-        </div>
-      </div>
-    </div>
-  @endforeach 
+    @endforeach 
   <br>
 </div>
 @endsection

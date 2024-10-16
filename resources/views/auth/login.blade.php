@@ -1,8 +1,60 @@
 @extends('layouts.appLoggin')
 
 @section('content')
-<br><br>
-<div align="center">
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="{{asset(url('img/inbal.jpg'))}}" style="width: 185px;" alt="logo">
+                </div>
+
+                <form method="POST" action="{{ route('login') }}">
+                @csrf
+                  <p>Por favor ingresa tus credenciales de acceso</p>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <label class="form-label" for="email">Correo Electrónico</label>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <label class="form-label" for="password">Contraseña</label>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button type="submit" class="btn btn-primary">{{ __('Iniciar sesion') }}</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex gradient-custom-2">
+                <img src="{{asset(url('img/almacen.png'))}}" width="500px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div align="center">
     <div class="card col-8">
         <div class="card-body">
             <div class="container">
@@ -79,5 +131,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection
