@@ -52,6 +52,20 @@
             @if($soli->estatus_solicitud == "Rechazada")
               <p class="alert alert-danger col-3">La solicitud ha sido rechazada.</p>
             @else
+            <form action="{{ route('solicitud.update', $soli->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="producto" id="producto" value="{{ $soli->producto_id }}">
+                <input type="hidden" name="centro" id="centro" value="{{ $soli->ct_id }}">
+
+                <!-- Botón de Autorizar -->
+                <button type="submit" name="estatus" value="autorizar" class="btn btn-success">Autorizar</button>
+
+                <!-- Botón de Rechazar -->
+                <button type="submit" name="estatus" value="rechazar" class="btn btn-danger">Rechazar</button>
+            </form>
+
+
               <a href="" class="btn btn-success">Autorizar</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#SoliRechazo">
                 Rechazar

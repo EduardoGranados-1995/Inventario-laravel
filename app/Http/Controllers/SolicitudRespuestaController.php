@@ -41,4 +41,34 @@ class SolicitudRespuestaController extends Controller
         return redirect()->back();
 
     }
+
+    public function update(Request $request, $id)
+{
+    // Encontrar la solicitud
+    $solicitud = Solicitud::findOrFail($id);
+
+    // Determinar la acción (autorizar o rechazar)
+    if ($request->estatus == 'autorizar') {
+        $estatus = 'Autorizada';
+    } elseif ($request->estatus == 'rechazar') {
+        $estatus = 'Rechazada';
+    }
+
+    // Actualizar el estatus en la tabla principal
+    $solicitud->estatus = $estatus;
+    $solicitud->save();
+
+    // Guardar el detalle en la tabla de detalles de la solicitud
+    solicitudRespuesta::create([
+        'solicitud_id' => $solicitud->id,
+        'producto_id' => $request->producto,
+        'estatus' => $estatus,
+        'cantidad' => $request->cantidad,  // Por si se quiere agregar comentarios
+        'ct_id' => $request->centro
+    ]);
+
+    // Redirigir o enviar una respuesta
+    return redirect()->back();
+}
+
 }
