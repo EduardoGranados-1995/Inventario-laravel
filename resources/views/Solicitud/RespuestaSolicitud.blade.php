@@ -20,7 +20,15 @@
             <tr>
                 <td>{{ $soli->id }}</td>
                 <td><strong>{{ $soli->nombre_ct }}</strong></td>
-                <td><span class="badge badge-{{ ($soli->estatus_solicitud == 'Enviada') ? 'success' : 'danger'}}">{{ $soli->estatus_solicitud }}</span></td>
+                <td>
+                  @if($soli->estatus_solicitud == 'Rechazada')
+                    <span class="badge badge-danger">{{ $soli->estatus_solicitud }}</span>
+                  @elseif($soli->estatus_solicitud == 'Autorizada')
+                    <span class="badge badge-success">{{ $soli->estatus_solicitud }}</span>
+                  @else
+                    <span class="badge badge-info">{{ $soli->estatus_solicitud }}</span>
+                  @endif
+                </td>
                 <td><a href="{{route('detalles', $soli->id)}}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
             </tr>
         @endforeach

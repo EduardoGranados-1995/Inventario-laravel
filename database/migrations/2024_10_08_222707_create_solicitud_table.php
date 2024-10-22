@@ -21,7 +21,7 @@ class CreateSolicitudTable extends Migration
             $table->integer('producto_id');
             $table->integer('cantidad');
             $table->string('descripcion');
-            $table->enum('estatus', ['Enviada', 'Autorizada', 'Rechazada'])->default('Enviada')->nullable(true);
+            $table->enum('estatus_solicitud', ['Enviada', 'Autorizada', 'Rechazada'])->default('Enviada')->nullable(true);
             $table->timestamps();
         });
     }

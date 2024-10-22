@@ -17,6 +17,7 @@ class CreateSolicitudRespuestaTable extends Migration
             $table->id();
             $table->integer('solicitud_id');
             $table->integer('producto_id');
+            $table->integer('cantidad')->nullable();;
             $table->enum('estatus', ['Autorizada', 'Rechazada'])->nullable(true);
             $table->integer('ct_id');
             $table->timestamps();

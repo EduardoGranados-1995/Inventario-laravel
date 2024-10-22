@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Solicitud;
 use App\solicitudRespuesta;
 use App\CentrosTrabajo;
+use App\Articulo;
 use DB;
 
 class SolicitudRespuestaController extends Controller
@@ -26,49 +27,54 @@ class SolicitudRespuestaController extends Controller
         return view('Solicitud.RespuestaDetalles', compact('solicitud'));
     }
 
-    public function rechazoSolicitud(Request $request){
-        $respuesta = solicitudRespuesta::create([
-            'solicitud_id' => $request->solicitud,
-            'producto_id' => $request->producto,
-            'ct_id' => $request->centro,
-            'estatus' => "Rechazada"
-        ]);
-
-        $solicitud = Solicitud::find($request->solicitud);
-        $solicitud->estatus_solicitud = "Rechazada";
-        $solicitud->save();
-       
-        return redirect()->back();
-
-    }
-
     public function update(Request $request, $id)
-{
-    // Encontrar la solicitud
-    $solicitud = Solicitud::findOrFail($id);
+    {
+        // Encontrar la solicitud
+        $solicitud = Solicitud::findOrFail($id);
 
-    // Determinar la acción (autorizar o rechazar)
-    if ($request->estatus == 'autorizar') {
-        $estatus = 'Autorizada';
-    } elseif ($request->estatus == 'rechazar') {
-        $estatus = 'Rechazada';
+        // Determinar la acción (autorizar o rechazar)
+        if ($request->estatus == 'autorizar') {
+            $estatus = 'Autorizada';
+
+            $solicitud->estatus_solicitud = $estatus;
+            $solicitud->save();
+
+            // Guardar el detalle en la tabla de detalles de la solicitud
+            solicitudRespuesta::create([
+            'solicitud_id' => $solicitud->id,
+            'producto_id' => $request->producto,
+            'estatus' => $estatus,
+            'cantidad' => $request->cantidad,  // Por si se quiere agregar cantidad
+            'ct_id' => $request->centro
+            ]);
+            
+            //Actualizar Cantidad de productos en inventario
+            DB::table('articulos')
+            ->where('producto_id', $request->producto)
+            ->update([
+                'cantidad' => DB::raw('cantidad - '.$request->cantidad),
+            ]);
+
+
+        } elseif ($request->estatus == 'rechazar') {
+            $estatus = 'Rechazada';
+
+            // Actualizar el estatus en la tabla principal
+            $solicitud->estatus_solicitud = $estatus;
+            $solicitud->save();
+
+            // Guardar el detalle en la tabla de detalles de la solicitud
+            solicitudRespuesta::create([
+                'solicitud_id' => $solicitud->id,
+                'producto_id' => $request->producto,
+                'estatus' => $estatus,
+                'cantidad' => 0,  
+                'ct_id' => $request->centro
+                ]);
+        }
+
+        // Redirigir o enviar una respuesta
+        return redirect()->back();
     }
-
-    // Actualizar el estatus en la tabla principal
-    $solicitud->estatus = $estatus;
-    $solicitud->save();
-
-    // Guardar el detalle en la tabla de detalles de la solicitud
-    solicitudRespuesta::create([
-        'solicitud_id' => $solicitud->id,
-        'producto_id' => $request->producto,
-        'estatus' => $estatus,
-        'cantidad' => $request->cantidad,  // Por si se quiere agregar comentarios
-        'ct_id' => $request->centro
-    ]);
-
-    // Redirigir o enviar una respuesta
-    return redirect()->back();
-}
 
 }
