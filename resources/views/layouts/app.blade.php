@@ -619,6 +619,15 @@
                         <li class="sidebar">
                             <a class="nav-link text-white" href="{{route('respuesta.solicitud')}}"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Solicitudes&nbsp;<span class="badge badge-warning">{{ $solicitudes }}</span></a>
                         </li>
+                        <li class="header-menu">
+                            <span>Gestión de Usuarios</span>
+                        </li>
+                        <li class="sidebar">
+                            <a class="nav-link text-white" href="{{url('/registrar')}}"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Registrar Usuario</a>
+                        </li>
+                        <li class="sidebar">
+                            <a class="nav-link text-white" href="{{url('/listado')}}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Listado de usuarios</a>
+                        </li>
                     @endif
                 </ul>
             </div>

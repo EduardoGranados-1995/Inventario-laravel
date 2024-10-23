@@ -18,6 +18,10 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::get('/', function () {return view('index');});
 Auth::routes();
 
+Route::get('/registrar', 'RegistroController@index');
+Route::post('/registrar-usuario', 'RegistroController@registrar')->name('registrar.usuario');
+Route::get('/listado', 'RegistroController@listado');
+
 
 // RUTAS PARA LA SOLICITD 
 Route::get('/solicitud', 'SolicitudController@index')->middleware('role:user');
@@ -27,7 +31,6 @@ Route::get('/get-products-by-category/{categoryId}', 'SolicitudController@getPro
 // RUTAS PARA RESPUESTA DE LA SOLICITUD
 Route::get('/solicitud-respuesta', 'SolicitudRespuestaController@index')->name('respuesta.solicitud');
 Route::get('/solicitud-respuesta/detalles/{id}', 'SolicitudRespuestaController@detalles')->name('detalles');
-Route::post('/rechazo-solicitud', 'SolicitudRespuestaController@rechazoSolicitud')->name('rechazo.solicitud');
 Route::put('/solicitud/{id}', 'SolicitudRespuestaController@update')->name('solicitud.update');
 
 //RUTAS INTERNAS DE ADMINISTRACION

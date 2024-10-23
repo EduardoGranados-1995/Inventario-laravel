@@ -42,10 +42,10 @@
                     <button type="submit" class="btn btn-primary">{{ __('Iniciar sesion') }}</button>
                   </div>
 
-                  <div class="d-flex align-items-center justify-content-center pb-4">
+                  <!-- <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">¿Aún no estas registrado?</p>&nbsp;
                     <a href="{{ route('register') }}">Registrar</a>
-                  </div>
+                  </div> -->
 
                 </form>
 
